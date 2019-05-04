@@ -135,8 +135,12 @@
     //     })
     // }
 
-    const bat = {filters: [{services: ['battery_service']}]}
-    navigator.bluetooth.requestDevice(bat)
+    const bat = {
+      filters: [
+        { services: [ 'battery_service' ] }
+      ]
+    }
+    ngavigator.bluetooth.requestDevice(bat)
         .then((device) => device.gatt.connect())
         .then((server) => {
           // Getting Battery Service...
