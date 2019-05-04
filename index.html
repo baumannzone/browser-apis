@@ -173,10 +173,24 @@
         })
   }
 
-    // demoBattery()
-    // demoGeoLocation()
-    // button.addEventListener('click', demoVibration)
-    button.addEventListener('click', demoBluetooth)
+  function demoAudio() {
+    console.log('Audio...')
+    const ac = new AudioContext()
+    const oscillator = ac.createOscillator()
+    // oscillator.type = 'sine'
+    // oscillator.frequency.value = 440
+    // oscillator.start()
+    oscillator.connect(ac.destination)
+    const time = ac.currentTime
+    oscillator.start(time)
+    oscillator.stop(time + 1)
+  }
+
+  // demoBattery()
+  // demoGeoLocation()
+  // button.addEventListener('click', demoVibration)
+  // button.addEventListener('click', demoBluetooth)
+  button.addEventListener('click', demoAudio)
 
 </script>
 
