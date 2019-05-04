@@ -120,7 +120,7 @@
           console.log(device)
           output.innerHTML = '<p>'+device+'</p>'
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log("Something went wrong. " + error)
           output.innerHTML = '<p>'+ error +'</p>'
         })
