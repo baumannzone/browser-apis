@@ -177,13 +177,33 @@
     console.log('Audio...')
     const ac = new AudioContext()
     const oscillator = ac.createOscillator()
-    // oscillator.type = 'sine'
-    // oscillator.frequency.value = 440
-    // oscillator.start()
+    // oscillator.type = 'sawtooth'
     oscillator.connect(ac.destination)
+
     const time = ac.currentTime
+    oscillator.frequency.value = 400
     oscillator.start(time)
-    oscillator.stop(time + 1)
+    oscillator.stop(time + 0.5)
+
+
+    oscillator.onended = function () {
+      console.log('Termine de sonar')
+      if (this.frequency.value === 400) {
+        const ac = new AudioContext()
+        const oscillator = ac.createOscillator()
+        const time = ac.currentTime
+        oscillator.connect(ac.destination)
+        oscillator.frequency.value = 500
+        oscillator.start(time)
+        oscillator.stop(time + 0.5)
+      }
+    }
+
+
+    // A string which specifies the shape of waveform to play;
+    // this can be one of a number of standard values, or custom to use a PeriodicWave to describe a custom waveform.
+    // Different waves will produce different tones. Standard values are "sine", "square", "sawtooth", "triangle" and "custom".
+    // The default is "sine".
   }
 
   // demoBattery()
