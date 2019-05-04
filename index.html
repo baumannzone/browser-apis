@@ -93,6 +93,7 @@
   }
 
   function demoBluetooth() {
+    console.log('Bluetooth...')
 
     /**
      * As a security feature, discovering Bluetooth devices with navigator.bluetooth.requestDevice
@@ -137,7 +138,7 @@
 
     const bat = {
       filters: [
-        { services: [ 'battery_service' ] }
+        {services: ['battery_service']}
       ]
     }
     navigator.bluetooth.requestDevice(bat)
