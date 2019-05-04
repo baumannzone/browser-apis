@@ -4,7 +4,7 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Demo - IO Extended</title>
 </head>
 
 <body>
@@ -114,11 +114,19 @@
       acceptAllDevices: true
     }
 
+    // navigator.bluetooth.requestDevice({filters: [{services: ['battery_service']}]})
+    //     .then(device => {
+    //       output.innerHTML = '<p>' + JSON.stringify(device) + '</p>'
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+
     navigator.bluetooth.requestDevice(all)
         .then((device) => {
           console.log('Name: ' + device.name)
           console.log(device)
-          output.innerHTML = '<p>' + JSON.stringify(device) + '</p>'
+          output.innerHTML = '<p>' + device.name + '</p>'
         })
         .catch((error) => {
           console.log("Something went wrong. " + error)
