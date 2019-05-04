@@ -140,7 +140,7 @@
         { services: [ 'battery_service' ] }
       ]
     }
-    ngavigator.bluetooth.requestDevice(bat)
+    navigator.bluetooth.requestDevice(bat)
         .then((device) => device.gatt.connect())
         .then((server) => {
           // Getting Battery Service...
