@@ -216,12 +216,21 @@
         })
   }
 
+  function demoShare() {
+
+    navigator.share({
+      title: 'Yo?',
+      text: 'Hey, look at this awesome website!',
+      url: 'https://twitter.com/baumannzone',
+    })
+  }
+
   // demoBattery()
   // demoGeoLocation()
   // button.addEventListener('click', demoVibration)
   // button.addEventListener('click', demoBluetooth)
   // button.addEventListener('click', demoAudio)
-  button.addEventListener('click', demoNotifications)
+  // button.addEventListener('click', demoNotifications)
 
 </script>
 
