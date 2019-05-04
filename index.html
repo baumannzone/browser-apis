@@ -206,16 +206,14 @@
   }
 
   function demoNotifications() {
-    // 'Notification.requestPermission(permission => {\n    if (permission === \'granted\') {\n        // Permission granted!\n    }\n});';
-    // 'const notification = new Notification(\'I\'m the title of this notification!\', {\n    body: \'The body goes here.\',\n    icon: \'/path/to/a/cat/picture.png\',\n});';
-    // 'notification.onclick = event => {\n    // Do something cool!\n}';
-    Notification.requestPermission
+    Notification.requestPermission()
         .then((permission) => {
           console.log('permission')
-          console.log(permission)
-        })
-        .catch((err) => {
-          console.log('error:')
+          console.log(permission) // granted / denied
+          if (permission === 'granted') {
+            // Permission granted!
+            new Notification('Hello bro!')
+          }
         })
   }
 
