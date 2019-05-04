@@ -72,6 +72,14 @@
   }
 
   function demoVibration() {
+    /**
+     * The vibrate API is only available once the user has started interacting with your page
+     * (e.g, by tapping or dragging on the screen).
+     * It cannot be used before a user interaction
+     * this is to prevent web pages (particularly embedded advertisements!)
+     * from attempting to scare the user by making their phone vibrate.
+     */
+
     output.innerHTML = '<p>!!!</p>'
     // if (!('vibrate' in navigator) && ('ontouchstart' in window)) {
     //   return false
@@ -84,11 +92,11 @@
     }
   }
 
+
   // demoBattery()
   // demoGeoLocation()
-  // demoVibration()
+  // button.addEventListener('click', demoVibration)
 
-  button.addEventListener('click', demoVibration)
 
 
 </script>
