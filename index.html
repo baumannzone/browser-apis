@@ -92,8 +92,8 @@
     }
   }
 
-  function demoBluethoot() {
-    let options = {
+  function demoBluetooth() {
+    const options = {
       filters: [
         {services: ['heart_rate']},
         {services: [0x1802, 0x1803]},
@@ -103,21 +103,24 @@
       ],
       optionalServices: ['battery_service']
     }
+    const all = {
+      acceptAllDevices: true
+    }
 
-    navigator.bluetooth.requestDevice(options)
-        .then(function (device) {
+    navigator.bluetooth.requestDevice(all)
+        .then((device) => {
           console.log('Name: ' + device.name)
-          // Do something with the device.
+          console.log(device)
         })
         .catch(function (error) {
           console.log("Something went wrong. " + error)
         })
   }
 
-
   // demoBattery()
   // demoGeoLocation()
   // button.addEventListener('click', demoVibration)
+  button.addEventListener('click', demoBluetooth)
 
 
 </script>
