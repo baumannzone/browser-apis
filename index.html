@@ -93,6 +93,13 @@
   }
 
   function demoBluetooth() {
+
+    /**
+     * As a security feature, discovering Bluetooth devices with navigator.bluetooth.requestDevice
+     * must be triggered by a user gesture such as a touch or a mouse click.
+     * We're talking about listening to pointerup, click, and touchend events.
+     */
+
     const options = {
       filters: [
         {services: ['heart_rate']},
@@ -111,9 +118,11 @@
         .then((device) => {
           console.log('Name: ' + device.name)
           console.log(device)
+          output.innerHTML = '<p>'+device+'</p>'
         })
         .catch(function (error) {
           console.log("Something went wrong. " + error)
+          output.innerHTML = '<p>'+ error +'</p>'
         })
   }
 
