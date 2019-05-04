@@ -10,7 +10,9 @@
 <body>
 
 <h1>Demo BT:</h1>
+
 <button id="button">Click me</button>
+
 <div id="output"></div>
 
 <script>
@@ -142,7 +144,10 @@
       ]
     }
     navigator.bluetooth.requestDevice(bat)
-        .then((device) => device.gatt.connect())
+        .then((device) => {
+          output.innerHTML = '<h3>' + device.name + '</h3>'
+          return device.gatt.connect()
+        })
         .then((server) => {
           // Getting Battery Service...
           console.log(server)
@@ -164,13 +169,14 @@
         })
         .catch(error => {
           console.log(error)
+          output.innerHTML = '<p>' + error + '</p>'
         })
+  }
 
     // demoBattery()
     // demoGeoLocation()
     // button.addEventListener('click', demoVibration)
     button.addEventListener('click', demoBluetooth)
-  }
 
 </script>
 
