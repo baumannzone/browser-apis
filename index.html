@@ -1,0 +1,85 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<h1>Demo</h1>
+<div id="output"></div>
+<script>
+
+  function demoBattery () {
+    navigator.getBattery()
+        .then((battery) => {
+          console.log('battery:')
+          console.log(battery)
+          battery.addEventListener('onchargingchange', onchargingchange(battery))
+          battery.addEventListener("onlevelchange", onlevelchange(battery))
+        })
+
+    function onlevelchange(battery) {
+      console.log('Battery status: ' + battery.level * 100 + ' %');
+    }
+
+    function onchargingchange(battery) {
+      if (battery.charging) {
+        console.log("Battery is charging");
+      }
+    }
+  }
+
+  function demoGeoLocation () {
+    if ("geolocation" in navigator) {
+      /* geolocalización disponible */
+      console.log('Loading...')
+      navigator.geolocation.getCurrentPosition(position => {
+        console.log('Position:')
+        console.log(position.coords)
+
+        const latitude  = position.coords.latitude
+        const longitude = position.coords.longitude
+
+        output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+        const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=8e456d1b8c004a1384e71d9a6c97e94f`
+
+        fetch(url)
+          .then(response => response.json())
+          .then((res) => {
+            console.log('External · Geo API:')
+            console.log(res.results[0].formatted)
+            console.log(res.results[0].components)
+            // console.log(res.results[0].components.country)
+            // console.log(res.results[0].components.state)
+            // console.log(res.results[0].components.county)
+            // console.log(res.results[0].components.city)
+          })
+
+      }, error => console.error(error));
+    } else {
+      console.log('GEO no disponible')
+      /* geolocalización NO disponible */
+    }
+  }
+
+  function demoVibration () {
+    // if (!('vibrate' in navigator) && ('ontouchstart' in window)) {
+    //   console.log('Esto no va a vibrar...')
+    //   return false
+    // }
+    navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+    navigator.vibrate([200, 100, 200, 100, 200, 100, 200]);
+    navigator.vibrate(400);
+
+  }
+
+  // demoBattery()
+  // demoGeoLocation()
+  demoVibration()
+</script>
+
+</body>
+</html>
