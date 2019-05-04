@@ -122,22 +122,49 @@
     //       console.log(error)
     //     })
 
-    navigator.bluetooth.requestDevice(all)
-        .then((device) => {
-          console.log('Name: ' + device.name)
-          console.log(device)
-          output.innerHTML = '<p>' + device.name + '</p>'
-        })
-        .catch((error) => {
-          console.log("Something went wrong. " + error)
-          output.innerHTML = '<p>' + error + '</p>'
-        })
-  }
+    // navigator.bluetooth.requestDevice(all)
+    //     .then((device) => {
+    //       console.log('Name: ' + device.name)
+    //       console.log(device)
+    //       output.innerHTML = '<p>' + device.name + '</p>'
+    //       device.gatt.connect()
+    //     })
+    //     .catch((error) => {
+    //       console.log("Something went wrong. " + error)
+    //       output.innerHTML = '<p>' + error + '</p>'
+    //     })
+    // }
 
-  // demoBattery()
-  // demoGeoLocation()
-  // button.addEventListener('click', demoVibration)
-  button.addEventListener('click', demoBluetooth)
+    const bat = {filters: [{services: ['battery_service']}]}
+    navigator.bluetooth.requestDevice(bat)
+        .then((device) => device.gatt.connect())
+        .then((server) => {
+          // Getting Battery Service...
+          console.log(server)
+          return server.getPrimaryService('battery_service')
+        })
+        .then((service) => {
+          // Getting Battery Level Characteristic...
+          console.log(service)
+          return service.getCharacteristic('battery_level')
+        })
+        .then((characteristic) => {
+          // Reading Battery Level...
+          console.log(characteristic)
+          return characteristic.readValue()
+        })
+        .then(value => {
+          console.log(value)
+          console.log('Battery percentage is ' + value.getUint8(0))
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
+    // demoBattery()
+    // demoGeoLocation()
+    // button.addEventListener('click', demoVibration)
+    button.addEventListener('click', demoBluetooth)
 
 
 </script>
