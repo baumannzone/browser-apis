@@ -185,7 +185,7 @@
     oscillator.start(time)
     oscillator.stop(time + 0.5)
 
-
+    // It sounds twice
     oscillator.onended = function () {
       console.log('Termine de sonar')
       if (this.frequency.value === 400) {
@@ -199,18 +199,32 @@
       }
     }
 
-
     // A string which specifies the shape of waveform to play;
     // this can be one of a number of standard values, or custom to use a PeriodicWave to describe a custom waveform.
     // Different waves will produce different tones. Standard values are "sine", "square", "sawtooth", "triangle" and "custom".
     // The default is "sine".
   }
 
+  function demoNotifications() {
+    // 'Notification.requestPermission(permission => {\n    if (permission === \'granted\') {\n        // Permission granted!\n    }\n});';
+    // 'const notification = new Notification(\'I\'m the title of this notification!\', {\n    body: \'The body goes here.\',\n    icon: \'/path/to/a/cat/picture.png\',\n});';
+    // 'notification.onclick = event => {\n    // Do something cool!\n}';
+    Notification.requestPermission
+        .then((permission) => {
+          console.log('permission')
+          console.log(permission)
+        })
+        .catch((err) => {
+          console.log('error:')
+        })
+  }
+
   // demoBattery()
   // demoGeoLocation()
   // button.addEventListener('click', demoVibration)
   // button.addEventListener('click', demoBluetooth)
-  button.addEventListener('click', demoAudio)
+  // button.addEventListener('click', demoAudio)
+  button.addEventListener('click', demoNotifications)
 
 </script>
 
