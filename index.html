@@ -118,7 +118,7 @@
         .then((device) => {
           console.log('Name: ' + device.name)
           console.log(device)
-          output.innerHTML = '<p>'+device+'</p>'
+          output.innerHTML = '<p>'+device.toString()+'</p>'
         })
         .catch((error) => {
           console.log("Something went wrong. " + error)
