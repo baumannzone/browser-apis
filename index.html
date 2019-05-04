@@ -118,18 +118,18 @@
         .then((device) => {
           console.log('Name: ' + device.name)
           console.log(device)
-          output.innerHTML = '<p>'+device.toString()+'</p>'
+          output.innerHTML = '<p>' + JSON.stringify(device) + '</p>'
         })
         .catch((error) => {
           console.log("Something went wrong. " + error)
-          output.innerHTML = '<p>'+ error +'</p>'
+          output.innerHTML = '<p>' + error + '</p>'
         })
   }
 
   // demoBattery()
   // demoGeoLocation()
   // button.addEventListener('click', demoVibration)
-  button.addEventListener('click', demoBluetooth)
+  // button.addEventListener('click', demoBluetooth)
 
 
 </script>
