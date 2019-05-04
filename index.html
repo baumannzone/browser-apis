@@ -4,12 +4,12 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Demo - IO Extended</title>
+  <title>Demos - IO Extended Madrid</title>
 </head>
 
 <body>
 
-<h1>Demo BT:</h1>
+<h1>Demos</h1>
 
 <button id="button">Click me</button>
 
@@ -217,12 +217,13 @@
   }
 
   function demoShare() {
-
-    navigator.share({
-      title: 'Yo?',
-      text: 'Hey, look at this awesome website!',
-      url: 'https://twitter.com/baumannzone',
-    })
+    if (navigator.share) {
+      navigator.share({
+        title: 'Baumannzone',
+        text: 'Hey, look at this awesome twitter guy! 🙊',
+        url: 'https://twitter.com/baumannzone',
+      })
+    }
   }
 
   // demoBattery()
