@@ -12,15 +12,15 @@
 <h1>Demos</h1>
 
 <form id="form">
-  <label for="user">User: </label>
-  <input type="text" name="user" id="user">
-  <label for="pass">Pass: </label>
-  <input type="password" name="pass" id="pass">
+  <label for="user">User:</label>
+  <input type="text" name="id" id="user" autocomplete="username"/>
+  <label for="pass">Pass:</label>
+  <input type="password" name="password" id="pass" autocomplete="current-password"/>
 </form>
 
 <button id="button">Click me</button>
 
-<div id="output"></div>
+<div id="output">--</div>
 
 <script>
   const output = document.getElementById('output')
@@ -235,25 +235,14 @@
     }
   }
 
-  function demoCredentialManager() {
-    const user = document.getElementById('user').value
-    const pass = document.getElementById('pass').value
+  function demoCredentials () {
     var cred = new PasswordCredential({
-      id: user,
-      password: pass
+      id: 'elUserName',
+      password: 'elPassW0rd'
     })
 
-    navigator.credentials
-        .store(cred)
-        .then((res) => {
-          console.log('res')
-          console.log(res)
-          output.innerHTML = `<p>Res: ${res}</p>`
-        })
-        .catch((err) => {
-          console.log('err: ', err)
-          output.innerHTML = `<p>Err: ${err}</p>`
-        })
+    console.log(cred)
+    navigator.credentials.store(cred)
   }
 
   // demoBattery()
@@ -263,7 +252,8 @@
   // button.addEventListener('click', demoAudio)
   // button.addEventListener('click', demoNotifications)
   // button.addEventListener('click', demoShare)
-  button.addEventListener('click', demoCredentialManager)
+  // button.addEventListener('click', demoCredentialManager)
+  button.addEventListener('click', demoCredentials)
 
 </script>
 
