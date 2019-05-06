@@ -15,10 +15,15 @@
         </b-form>
         <hr>
         <div class="d-flex justify-content-end">
-          <b-button v-b-toggle="'demo1'"  variant="outline-primary" size="sm">Show</b-button>
+          <b-button v-b-toggle="'demo1'"  variant="outline-secondary" size="sm">Show</b-button>
         </div>
         <b-collapse id="demo1">
           <p>I am collapsible content!</p>
+          <!-- Code Block -->
+          <highlight-code lang="javascript">
+            let str = 'Hello, World!';
+            console.log(str);
+          </highlight-code>
         </b-collapse>
       </b-card>
 
