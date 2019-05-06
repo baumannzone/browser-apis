@@ -5,7 +5,7 @@
 
       <hr>
 
-      <b-card class="mb-2">
+      <b-card class="mb-5">
         <h4>#1</h4>
         <b-form @submit="demo1">
 
@@ -31,7 +31,7 @@
         </div>
       </b-card>
 
-      <b-card class="mb-2">
+      <b-card class="mb-5">
         <h4>#2</h4>
         <b-form @submit="demo2">
 
@@ -72,6 +72,58 @@
         </div>
       </b-card>
 
+      <b-card class="mb-5">
+        <h4>#3</h4>
+        <b-form @submit="demo3">
+
+          <b-form-group label="Text:" label-for="inputDemo3">
+            <b-form-input id="inputDemo3" v-model="form3.input" placeholder="🦄 Type something awesome.."></b-form-input>
+          </b-form-group>
+
+          <b-form-group label="Voices:">
+            <b-form-select v-model="selectedVoiceName" :options="voiceNames"></b-form-select>
+          </b-form-group>
+
+          <b-form-group label="Pitch (Tone)" label-for="rangePitchDemo3">
+            <b-form-input id="rangePitchDemo3" v-model="form3.pitch" type="range" min="0" max="2" step="0.05">
+            </b-form-input>
+            <small>Value: {{form3.pitch}}</small>
+          </b-form-group>
+
+          <b-form-group label="Rate (Speed)" label-for="rangeRateDemo3">
+            <b-form-input id="rangeRateDemo3" v-model="form3.rate" type="range" min="0.46" max="3.6" step="0.01">
+            </b-form-input>
+            <small>Value: {{form3.rate}}</small>
+          </b-form-group>
+
+          <b-button type="submit" variant="primary" size="sm">Submit</b-button>
+        </b-form>
+        <hr>
+        <div class="d-flex justify-content-end">
+          <b-button v-b-toggle="'demo3'" variant="outline-secondary" size="sm">Code</b-button>
+        </div>
+        <div class="mt-2">
+          <b-collapse id="demo3">
+
+            <highlight-code lang="javascript">
+
+              // onvoiceschanged is async
+              speechSynthesis.onvoiceschanged = () => {
+                const text = 'Hola, soy Jorge Baumann y mi perro se llama Rambo 🐶'
+                const synth = speechSynthesis
+                const voices = synth.getVoices()
+                const utterThis = new SpeechSynthesisUtterance(text)
+                utterThis.voice = voices.find(v => v.name === 'Jorge')
+                utterThis.pitch = 1.5
+                utterThis.rate = 2
+                synth.speak(utterThis)
+              }
+
+            </highlight-code>
+          </b-collapse>
+        </div>
+      </b-card>
+
     </MainBlock>
   </div>
 </template>
@@ -88,11 +140,16 @@ export default {
     return {
       voices: [],
       voiceNames: [],
-      selectedVoiceName: 0,
+      selectedVoiceName: 'Jorge',
       form1: {
         input: ''
       },
       form2: {
+        input: '',
+        pitch: 1,
+        rate: 1
+      },
+      form3: {
         input: '',
         pitch: 1,
         rate: 1
@@ -111,7 +168,7 @@ export default {
     populateVoiceList () {
       this.voices = window.speechSynthesis.getVoices()
       this.voiceNames = this.voices.map((v) => {
-        return { name: v.name, lang: v.lang }
+        return { value: v.name, text: `${v.name} (${v.lang})`, name: v.name, lang: v.lang }
       })
     },
     demo1 (ev) {
@@ -126,6 +183,18 @@ export default {
       const text = this.inputDemo1
       const synth = window.speechSynthesis
       const utterThis = new SpeechSynthesisUtterance(text)
+      synth.speak(utterThis)
+    },
+    demo3 (ev) {
+      ev.preventDefault()
+      const synth = window.speechSynthesis
+      const voice = this.voices.find(v => v.name === this.selectedVoiceName)
+      const utterThis = new SpeechSynthesisUtterance(this.text)
+      utterThis.voice = voice
+      utterThis.pitch = this.form3.pitch
+      utterThis.rate = this.form3.rate
+      console.log('utterThis:')
+      console.log(utterThis)
       synth.speak(utterThis)
     }
   }
