@@ -1,5 +1,23 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="battery-api">
+    <MainBlock title="Battery Status API">
+      g
+    </MainBlock>
+
   </div>
 </template>
+
+<script>
+import MainBlock from '@/components/MainBlock.vue'
+
+export default {
+  name: 'BatteryAPI',
+  components: {
+    MainBlock
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
