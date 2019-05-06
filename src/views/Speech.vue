@@ -3,7 +3,7 @@
     <MainBlock title="Speech synthesis">
       <p class="text-muted lead text-center">aka text-to-speech</p>
       <hr>
-      <b-card>
+      <b-card class="mb-2">
         <h4>#1</h4>
         <b-form @submit="demo1">
 
@@ -15,16 +15,44 @@
         </b-form>
         <hr>
         <div class="d-flex justify-content-end">
-          <b-button v-b-toggle="'demo1'"  variant="outline-secondary" size="sm">Show</b-button>
+          <b-button v-b-toggle="'demo1'" variant="outline-secondary" size="sm">Code</b-button>
         </div>
-        <b-collapse id="demo1">
-          <p>I am collapsible content!</p>
-          <!-- Code Block -->
-          <highlight-code lang="javascript">
-            let str = 'Hello, World!';
-            console.log(str);
-          </highlight-code>
-        </b-collapse>
+        <div class="mt-2">
+          <b-collapse id="demo1">
+            <highlight-code lang="javascript">
+              const text = 'Hola, soy Jorge Baumann'
+              const synth = window.speechSynthesis
+              const utterThis = new SpeechSynthesisUtterance(text)
+              synth.speak(utterThis)
+            </highlight-code>
+          </b-collapse>
+        </div>
+      </b-card>
+
+      <b-card class="mb-2">
+        <h4>#2</h4>
+        <b-form @submit="demo2">
+
+          <b-form-group label="Text:" label-for="inputDemo2">
+            <b-form-input id="inputDemo2" v-model="inputDemo2" placeholder="Type something cool.."></b-form-input>
+          </b-form-group>
+
+          <b-button type="submit" variant="primary" size="sm">Submit</b-button>
+        </b-form>
+        <hr>
+        <div class="d-flex justify-content-end">
+          <b-button v-b-toggle="'demo2'" variant="outline-secondary" size="sm">Code</b-button>
+        </div>
+        <div class="mt-2">
+          <b-collapse id="demo2">
+            <highlight-code lang="javascript">
+              const text = 'Hola, soy Jorge Baumann'
+              const synth = window.speechSynthesis
+              const utterThis = new SpeechSynthesisUtterance(text)
+              synth.speak(utterThis)
+            </highlight-code>
+          </b-collapse>
+        </div>
       </b-card>
 
     </MainBlock>
@@ -47,6 +75,13 @@ export default {
   },
   methods: {
     demo1 (ev) {
+      ev.preventDefault()
+      const text = this.inputDemo1
+      const synth = window.speechSynthesis
+      const utterThis = new SpeechSynthesisUtterance(text)
+      synth.speak(utterThis)
+    },
+    demo2 (ev) {
       ev.preventDefault()
       const text = this.inputDemo1
       const synth = window.speechSynthesis
