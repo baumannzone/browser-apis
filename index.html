@@ -11,8 +11,8 @@
       position: relative;
       width: 200px;
       height: 200px;
-      border: 5px solid #CCC;
-      border-radius: 10px;
+      border: 5px solid #ddd;
+      border-radius: 5px;
     }
 
     .ball {
@@ -21,7 +21,7 @@
       left: 90px;
       width: 20px;
       height: 20px;
-      background: green;
+      background: #35ccc1;
       border-radius: 100%;
     }
   </style>
@@ -52,6 +52,14 @@
 <script>
   const output = document.getElementById('output')
   const button = document.getElementById('button')
+
+  // Orientation Demo
+  const ball = document.querySelector('.ball')
+  const garden = document.querySelector('.garden')
+  const result = document.querySelector('.result')
+
+  const maxX = garden.clientWidth - ball.clientWidth
+  const maxY = garden.clientHeight - ball.clientHeight
 
   function demoBattery() {
     navigator.getBattery()
@@ -274,15 +282,7 @@
     navigator.credentials.store(cred)
   }
 
-  const ball = document.querySelector('.ball')
-  const garden = document.querySelector('.garden')
-  const result = document.querySelector('.result')
-
-  var maxX = garden.clientWidth - ball.clientWidth
-  var maxY = garden.clientHeight - ball.clientHeight
-
   function handleOrientation(event) {
-    console.log('Me orientas??')
     let x = event.beta  // In degree in the range [-180,180]
     let y = event.gamma // In degree in the range [-90,90]
 
