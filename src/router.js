@@ -11,7 +11,9 @@ const routerOptions = [
   { path: '/notifications', name: 'Notifications' },
   { path: '/audio', name: 'Audio' },
   { path: '/share', name: 'Share' },
-  { path: '/orientation', name: 'Orientation' }
+  { path: '/orientation', name: 'Orientation' },
+  { path: '/bluetooth', name: 'Bluetooth' },
+  { path: '/media-recorder', name: 'MediaRecorder' }
 ]
 
 const routes = routerOptions.map(route => {
