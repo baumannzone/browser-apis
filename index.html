@@ -14,8 +14,8 @@
 <form id="form">
   <label for="user">User:</label>
   <input type="text" name="id" id="user" autocomplete="username"/>
-  <label for="pass">Pass:</label>
-  <input type="password" name="password" id="pass" autocomplete="current-password"/>
+  <label for="password">Pass:</label>
+  <input type="password" name="password" id="password" autocomplete="current-password"/>
 </form>
 
 <button id="button">Click me</button>
@@ -28,12 +28,12 @@
 
   function demoBattery() {
     navigator.getBattery()
-        .then((battery) => {
-          console.log('battery:')
-          console.log(battery)
-          battery.addEventListener('onchargingchange', onchargingchange(battery))
-          battery.addEventListener("onlevelchange", onlevelchange(battery))
-        })
+      .then((battery) => {
+        console.log('battery:')
+        console.log(battery)
+        battery.addEventListener('onchargingchange', onchargingchange(battery))
+        battery.addEventListener("onlevelchange", onlevelchange(battery))
+      })
 
     function onlevelchange(battery) {
       console.log('Battery status: ' + battery.level * 100 + ' %')
@@ -62,16 +62,16 @@
         const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=8e456d1b8c004a1384e71d9a6c97e94f`
 
         fetch(url)
-            .then(response => response.json())
-            .then((res) => {
-              console.log('External · Geo API:')
-              console.log(res.results[0].formatted)
-              console.log(res.results[0].components)
-              // console.log(res.results[0].components.country)
-              // console.log(res.results[0].components.state)
-              // console.log(res.results[0].components.county)
-              // console.log(res.results[0].components.city)
-            })
+          .then(response => response.json())
+          .then((res) => {
+            console.log('External · Geo API:')
+            console.log(res.results[0].formatted)
+            console.log(res.results[0].components)
+            // console.log(res.results[0].components.country)
+            // console.log(res.results[0].components.state)
+            // console.log(res.results[0].components.county)
+            // console.log(res.results[0].components.city)
+          })
 
       }, error => console.error(error))
     } else {
@@ -151,33 +151,33 @@
       ]
     }
     navigator.bluetooth.requestDevice(bat)
-        .then((device) => {
-          output.innerHTML = '<h3>' + device.name + '</h3>'
-          return device.gatt.connect()
-        })
-        .then((server) => {
-          // Getting Battery Service...
-          console.log(server)
-          return server.getPrimaryService('battery_service')
-        })
-        .then((service) => {
-          // Getting Battery Level Characteristic...
-          console.log(service)
-          return service.getCharacteristic('battery_level')
-        })
-        .then((characteristic) => {
-          // Reading Battery Level...
-          console.log(characteristic)
-          return characteristic.readValue()
-        })
-        .then(value => {
-          console.log(value)
-          console.log('Battery percentage is ' + value.getUint8(0))
-        })
-        .catch(error => {
-          console.log(error)
-          output.innerHTML = '<p>' + error + '</p>'
-        })
+      .then((device) => {
+        output.innerHTML = '<h3>' + device.name + '</h3>'
+        return device.gatt.connect()
+      })
+      .then((server) => {
+        // Getting Battery Service...
+        console.log(server)
+        return server.getPrimaryService('battery_service')
+      })
+      .then((service) => {
+        // Getting Battery Level Characteristic...
+        console.log(service)
+        return service.getCharacteristic('battery_level')
+      })
+      .then((characteristic) => {
+        // Reading Battery Level...
+        console.log(characteristic)
+        return characteristic.readValue()
+      })
+      .then(value => {
+        console.log(value)
+        console.log('Battery percentage is ' + value.getUint8(0))
+      })
+      .catch(error => {
+        console.log(error)
+        output.innerHTML = '<p>' + error + '</p>'
+      })
   }
 
   function demoAudio() {
@@ -214,13 +214,13 @@
 
   function demoNotifications() {
     Notification.requestPermission()
-        .then((permission) => {
-          console.log('permission')
-          console.log(permission) // may be => granted · denied
-          if (permission === 'granted') {
-            const noti = new Notification('😠😠 3. horas. probando', {body: 'Tenía el modo no molestar...🤦‍♂️'})
-          }
-        })
+      .then((permission) => {
+        console.log('permission')
+        console.log(permission) // may be => granted · denied
+        if (permission === 'granted') {
+          const noti = new Notification('😠😠 3. horas. probando', {body: 'Tenía el modo no molestar...🤦‍♂️'})
+        }
+      })
   }
 
   function demoShare() {
@@ -235,13 +235,14 @@
     }
   }
 
-  function demoCredentials () {
-    var cred = new PasswordCredential({
-      id: 'elUserName',
-      password: 'elPassW0rd'
-    })
+  function demoCredentials() {
+    const id = document.getElementById('user').value
+    const password = document.getElementById('password').value
 
-    console.log(cred)
+    const cred = new PasswordCredential({
+      id,
+      password
+    })
     navigator.credentials.store(cred)
   }
 
