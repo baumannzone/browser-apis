@@ -2,8 +2,9 @@
   <div id="app">
     <div class="container">
       <div id="nav" class="py-4">
-        <template v-for="route in routes">
-          <router-link :to="route.to" :key="route.name">{{ route.name }}</router-link> ·
+        <template v-for="(route, idx) in routes">
+          <router-link :to="route.to" :key="route.name">{{ route.name }}</router-link>
+          <span v-if="idx !== lastNavItemIdx" :key="idx"> · </span>
         </template>
       </div>
       <router-view/>
@@ -32,9 +33,8 @@ export default {
     }
   },
   computed: {
-    superRoutes () {
-      const length = this.routes.length
-      return length
+    lastNavItemIdx () {
+      return this.routes.length - 1
     }
   }
 }
