@@ -236,9 +236,9 @@
   }
 
   function demoCredentialManager() {
-    const user = document.getElementById('user')
-    const pass = document.getElementById('pass')
-    var cred  = new PasswordCredential({
+    const user = document.getElementById('user').value
+    const pass = document.getElementById('pass').value
+    var cred = new PasswordCredential({
       id: user,
       password: pass
     })
@@ -246,7 +246,17 @@
     console.log(cred)
 
 
-
+    navigator.credentials
+        .store(cred)
+        .then((res) => {
+          console.log('res')
+          console.log(res)
+          output.innerHTML = `<p>Res: ${res}</p>`
+        })
+        .catch((err) => {
+          console.log('err: ', err)
+          output.innerHTML = `<p>Err: ${err}</p>`
+        })
   }
 
   // demoBattery()
