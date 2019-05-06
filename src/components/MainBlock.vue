@@ -34,15 +34,15 @@
 </template>
 
 <script>
-  export default {
-    name: 'HelloWorld',
-    props: {
-      title: {
-        type: String,
-        required: false
-      }
+export default {
+  name: 'HelloWorld',
+  props: {
+    title: {
+      type: String,
+      required: false
     }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
