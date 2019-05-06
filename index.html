@@ -5,22 +5,49 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Demos - IO Extended Madrid</title>
+
+  <style>
+    .garden {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border: 5px solid #CCC;
+      border-radius: 10px;
+    }
+
+    .ball {
+      position: absolute;
+      top: 90px;
+      left: 90px;
+      width: 20px;
+      height: 20px;
+      background: green;
+      border-radius: 100%;
+    }
+  </style>
 </head>
 
 <body>
 
+
 <h1>Demos</h1>
 
-<form id="form">
-  <label for="user">User:</label>
-  <input type="text" name="id" id="user" autocomplete="username"/>
-  <label for="password">Pass:</label>
-  <input type="password" name="password" id="password" autocomplete="current-password"/>
-</form>
+<!--<form id="form">-->
+<!--  <label for="user">User:</label>-->
+<!--  <input type="text" name="id" id="user" autocomplete="username"/>-->
+<!--  <label for="password">Pass:</label>-->
+<!--  <input type="password" name="password" id="password" autocomplete="current-password"/>-->
+<!--</form>-->
 
 <button id="button">Click me</button>
 
-<div id="output">--</div>
+<div id="output"></div>
+
+<div class="garden">
+  <div class="ball"></div>
+</div>
+
+<pre class="result"></pre>
 
 <script>
   const output = document.getElementById('output')
@@ -93,6 +120,7 @@
     // if (!('vibrate' in navigator) && ('ontouchstart' in window)) {
     //   return false
     // }
+
     if ('vibrate' in navigator) {
       output.innerHTML = '<p>Vamos a vibrar...</p>'
       navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate
@@ -246,6 +274,42 @@
     navigator.credentials.store(cred)
   }
 
+  const ball = document.querySelector('.ball')
+  const garden = document.querySelector('.garden')
+  const result = document.querySelector('.result')
+
+  var maxX = garden.clientWidth - ball.clientWidth
+  var maxY = garden.clientHeight - ball.clientHeight
+
+  function handleOrientation(event) {
+    console.log('Me orientas??')
+    let x = event.beta  // In degree in the range [-180,180]
+    let y = event.gamma // In degree in the range [-90,90]
+
+    result.innerHTML = "beta : " + x + "\n"
+    result.innerHTML += "gamma: " + y + "\n"
+
+    // Because we don't want to have the device upside down
+    // We constrain the x value to the range [-90,90]
+    if (x > 90) {
+      x = 90
+    }
+
+    if (x < -90) {
+      x = -90
+    }
+
+    // To make computation easier we shift the range of
+    // x and y to [0,180]
+    x += 90
+    y += 90
+
+    // 10 is half the size of the ball
+    // It center the positioning point to the center of the ball
+    ball.style.top = (maxX * x / 180 - 10) + "px"
+    ball.style.left = (maxY * y / 180 - 10) + "px"
+  }
+
   // demoBattery()
   // demoGeoLocation()
   // button.addEventListener('click', demoVibration)
@@ -253,8 +317,9 @@
   // button.addEventListener('click', demoAudio)
   // button.addEventListener('click', demoNotifications)
   // button.addEventListener('click', demoShare)
-  // button.addEventListener('click', demoCredentialManager)
-  button.addEventListener('click', demoCredentials)
+  // button.addEventListener('click', demoCredentials)
+  // button.addEventListener('click', demoOrientation)
+  window.addEventListener('deviceorientation', handleOrientation)
 
 </script>
 
