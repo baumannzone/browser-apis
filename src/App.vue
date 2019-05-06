@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container">
-      <div id="nav" class="py-4">
+      <div id="nav" class="py-4 text-center">
         <template v-for="(route, idx) in routes">
           <router-link :to="route.to" :key="route.name">{{ route.name }}</router-link>
           <span v-if="idx !== lastNavItemIdx" :key="idx"> · </span>
