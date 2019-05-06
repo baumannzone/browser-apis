@@ -3,7 +3,7 @@
     <MainBlock title="Speech synthesis">
       <p class="text-muted lead text-center">aka text-to-speech</p>
       <hr>
-      <div>
+      <b-card>
         <h4>#1</h4>
         <b-form @submit="demo1">
 
@@ -11,10 +11,16 @@
             <b-form-input id="inputDemo1" v-model="inputDemo1" placeholder="Type something.."></b-form-input>
           </b-form-group>
 
-          <b-button type="submit" variant="primary">Submit</b-button>
+          <b-button type="submit" variant="primary" size="sm">Submit</b-button>
         </b-form>
         <hr>
-      </div>
+        <div class="d-flex justify-content-end">
+          <b-button v-b-toggle="'demo1'"  variant="outline-primary" size="sm">Show</b-button>
+        </div>
+        <b-collapse id="demo1">
+          <p>I am collapsible content!</p>
+        </b-collapse>
+      </b-card>
 
     </MainBlock>
   </div>
