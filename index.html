@@ -228,13 +228,27 @@
     }
   }
 
+  function demodude() {
+    navigator.credentials.create({})
+        .then((res) => {
+          console.log('res')
+          console.log(res)
+          output.innerHTML = `<p>Res: ${res}</p>`
+        })
+        .catch((err) => {
+          console.log('err: ', err)
+          output.innerHTML = `<p>Err: ${err}</p>`
+        })
+  }
+
   // demoBattery()
   // demoGeoLocation()
   // button.addEventListener('click', demoVibration)
   // button.addEventListener('click', demoBluetooth)
   // button.addEventListener('click', demoAudio)
   // button.addEventListener('click', demoNotifications)
-  button.addEventListener('click', demoShare)
+  // button.addEventListener('click', demoShare)
+  button.addEventListener('click', demodude)
 
 </script>
 
