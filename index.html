@@ -11,6 +11,13 @@
 
 <h1>Demos</h1>
 
+<form id="form">
+  <label for="user">User: </label>
+  <input type="text" name="user" id="user">
+  <label for="pass">Pass: </label>
+  <input type="password" name="pass" id="pass">
+</form>
+
 <button id="button">Click me</button>
 
 <div id="output"></div>
@@ -228,17 +235,18 @@
     }
   }
 
-  function demodude() {
-    navigator.credentials.create({})
-        .then((res) => {
-          console.log('res')
-          console.log(res)
-          output.innerHTML = `<p>Res: ${res}</p>`
-        })
-        .catch((err) => {
-          console.log('err: ', err)
-          output.innerHTML = `<p>Err: ${err}</p>`
-        })
+  function demoCredentialManager() {
+    const user = document.getElementById('user')
+    const pass = document.getElementById('pass')
+    var cred  = new PasswordCredential({
+      id: user,
+      password: pass
+    })
+
+    console.log(cred)
+
+
+
   }
 
   // demoBattery()
@@ -248,7 +256,7 @@
   // button.addEventListener('click', demoAudio)
   // button.addEventListener('click', demoNotifications)
   // button.addEventListener('click', demoShare)
-  button.addEventListener('click', demodude)
+  button.addEventListener('click', demoCredentialManager)
 
 </script>
 
