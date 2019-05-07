@@ -4,8 +4,8 @@
       <b-card class="mb-5">
         <h4>#1</h4>
         <hr>
-        <div v-for="(val, key) in battery">
-          <pre :key="key">{{ key }}: {{ val }}</pre>
+        <div v-for="(val, key) in battery" :key="key">
+          <pre>{{ key }}: {{ val }}</pre>
         </div>
         <div class="data">
           <i class="fas fa-battery-full"></i>
@@ -71,24 +71,21 @@ export default {
            */
           battery.addEventListener('chargingchange', (ev) => {
             const battery = ev.currentTarget
-            console.log(`Battery charging? ${battery.charging}`)
+            this.battery.charging = battery.charging
+            console.log(`Battery charging? ${battery.charging ? 'Yes' : 'No'}`)
           })
 
           battery.addEventListener('levelchange', (ev) => {
             const battery = ev.currentTarget
-            console.log(`Battery Level ${battery.level}`)
+            this.battery.level = battery.level
+            console.log(`Battery Level ${battery.level} %`)
           })
-
         })
-    },
-    onchargingchange (battery) {
-      if (battery.charging) {
-        console.log('Battery is charging')
-      }
-    },
-    onlevelchange (battery) {
-      console.log('Battery status: ' + battery.level * 100 + ' %')
     }
+  },
+  beforeRouteLeave (to, from, next) {
+    // Clear battery event listeners
+    next()
   }
 }
 </script>
