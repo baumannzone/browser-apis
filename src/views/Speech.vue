@@ -1,9 +1,7 @@
 <template>
   <div class="speech">
-    <MainBlock title="Speech synthesis">
-      <p class="text-muted lead text-center">aka text-to-speech</p>
-
-      <hr>
+    <!-- Sintesis de voz -->
+    <MainBlock title="Speech Synthesis" subtitle="aka Text-To-Speech">
 
       <b-card class="mb-5">
         <h4>#1</h4>

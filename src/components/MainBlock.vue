@@ -1,7 +1,8 @@
 <template>
   <div class="MainBlock">
-    <h1 class="text-center" v-if="title"> {{ title }} </h1>
-    <h3 class="text-center" v-if="subtitle"> {{ subtitle }}</h3>
+    <h1 v-if="title" class="text-center"> {{ title }} </h1>
+    <p v-if="subtitle" class="text-muted lead text-center">{{ subtitle }}</p>
+    <hr class="my-5">
     <slot></slot>
   </div>
 </template>
