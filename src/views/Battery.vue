@@ -22,10 +22,23 @@
           <div class="mt-2">
             <b-collapse id="demo1">
               <highlight-code lang="javascript">
-                const text = 'Hola, soy Jorge Baumann'
-                const synth = window.speechSynthesis
-                const utterThis = new SpeechSynthesisUtterance(text)
-                synth.speak(utterThis)
+                navigator.getBattery()
+                  .then((battery) => {
+                    // battery.level · battery.charging · battery.chargingTime · battery.dischargingTime
+
+                    /**
+                    * Obsolete
+                    * This feature is obsolete. Although it may still work in some browsers, its use is discouraged since it could be removed at any time.
+                    * Try to avoid using it.
+                    */
+                    battery.addEventListener('chargingchange', (ev) => {
+                      // Handle values
+                    })
+
+                    battery.addEventListener('levelchange', (ev) => {
+                      // Handle values
+                    })
+                })
               </highlight-code>
             </b-collapse>
           </div>
@@ -79,19 +92,14 @@ export default {
     demo1 () {
       navigator.getBattery()
         .then((battery) => {
-          // console.log('Battery Manager:')
-          console.table(battery)
+          console.log('Battery Manager:')
+          console.log(battery)
 
           this.battery.level = battery.level * 100
           this.battery.charging = battery.charging
           this.battery.chargingTime = battery.chargingTime
           this.battery.dischargingTime = battery.dischargingTime
 
-          /**
-           * Obsolete
-           * This feature is obsolete. Although it may still work in some browsers, its use is discouraged since it could be removed at any time.
-           * Try to avoid using it.
-           */
           battery.addEventListener('chargingchange', (ev) => {
             const battery = ev.currentTarget
             this.battery.charging = battery.charging
