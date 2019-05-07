@@ -25,8 +25,9 @@
                 // Ask
                 Notification.requestPermission()
                   .then((permission) => {
+                    // granted · denied
                     if (permission === 'granted') {
-                      new Notification('Notification title', { body: 'Notification message not very long', icon: '' })
+                      new Notification('Notification title', { body: 'Notification message not very long' })
                     }
                 })
               </highlight-code>
@@ -49,7 +50,11 @@
           <div class="mt-2">
             <b-collapse id="demo2">
               <highlight-code lang="javascript">
-                // dude
+                const options = {
+                  body: 'Notification message a little bit longer...',
+                  icon: 'your-image.png'
+                }
+                new Notification('My Super Duper Title 🙊', options)
               </highlight-code>
             </b-collapse>
           </div>
