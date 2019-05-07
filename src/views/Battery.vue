@@ -2,6 +2,13 @@
   <div class="battery-api">
 
     <MainBlock title="Battery Status API">
+
+      <p class="lead text-muted">
+        The Battery Status API, more often referred to as the Battery API, provides information about the system's battery charge level and lets you be notified by events that are sent when the battery level or charging status change.
+        <br>
+        This can be used to save changes before the battery runs out in order to prevent data loss. 🤔
+      </p>
+
       <b-card class="mb-5">
         <h4>#1</h4>
         <hr>
@@ -23,15 +30,13 @@
           <div class="mt-2">
             <b-collapse id="demo1">
               <highlight-code lang="javascript">
+                /**
+                * This feature is obsolete. Although it may still work in some browsers, its use is discouraged since it could be removed at any time.
+                * Try to avoid using it.
+                */
                 navigator.getBattery()
                   .then((battery) => {
                     // battery.level · battery.charging · battery.chargingTime · battery.dischargingTime
-
-                    /**
-                    * Obsolete
-                    * This feature is obsolete. Although it may still work in some browsers, its use is discouraged since it could be removed at any time.
-                    * Try to avoid using it.
-                    */
                     battery.addEventListener('chargingchange', (ev) => {
                       // Handle values
                     })

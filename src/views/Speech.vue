@@ -3,6 +3,14 @@
     <!-- Sintesis de voz -->
     <MainBlock title="Speech Synthesis" subtitle="aka Text-To-Speech">
 
+      <p class="lead text-muted">
+        The Web Speech API provides two distinct areas of functionality: Speech recognition and Speech synthesis which open up interesting new possibilities for accessibility
+      </p>
+
+      <p class="lead text-muted">
+        Speech Synthesis or text to voice allow us convert text to voice and playing it out of a device's speaker in multiple languages
+      </p>
+
       <b-card class="mb-5">
         <h4>#1</h4>
         <b-form @submit="demo1">
