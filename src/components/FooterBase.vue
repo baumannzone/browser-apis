@@ -17,6 +17,11 @@
             <i class="medium-ico fab fa-medium-m"></i>
           </a>
         </li>
+        <li class="list-inline-item">
+          <a href="https://www.youtube.com/channel/UCbi2eMmxUEU0unLlmm727NA" target="_blank">
+            <i class="youtube-ico fab fa-youtube"></i>
+          </a>
+        </li>
       </ul>
       <small>Powered by
         <a href="https://vuejs.org/">
@@ -42,6 +47,8 @@ export default {
   footer
     .github-ico
       color #24292d
+    .youtube-ico
+      color #ff0400
     .twitter-ico
       color #48AAE6
     .vue-ico

@@ -15,15 +15,15 @@ export default {
       routes: [
         { to: '/', name: 'Home' },
         { to: '/speech', name: 'Speech' },
-        { to: '/speech-recognition', name: 'Speech Recognition' },
         { to: '/battery', name: 'Battery' },
         { to: '/geolocation', name: 'Geolocation' },
         { to: '/vibration', name: 'Vibration' },
         { to: '/notifications', name: 'Notifications' },
-        { to: '/bluetooth', name: 'Bluetooth' },
         { to: '/share', name: 'Share' },
         { to: '/orientation', name: 'Orientation' },
-        { to: '/audio', name: 'Audio' }
+        { to: '/audio', name: 'Audio' },
+        { to: '/bluetooth', name: 'Bluetooth' },
+        { to: '/speech-recognition', name: 'Speech Recognition' },
       ]
     }
   },
