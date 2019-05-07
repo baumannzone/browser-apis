@@ -2,11 +2,68 @@
   <div class="geolocation-api">
 
     <MainBlock title="Geolocation API">
+
+      <p class="text-muted">
+        The Geolocation API allows the user to provide their location to web applications if they so desire. For privacy reasons, the user is asked for permission to report location information.
+      </p>
+
       <b-card class="mb-5">
         <h4>#1</h4>
         <hr>
         <div class="data">
-          <b-button variant="primary" size="sm" @click="getPosition">Get Position</b-button>
+          <b-button variant="primary" size="sm" @click="demo1">Get Position</b-button>
+
+          <div v-if="hasCoords">
+            <h4 class="mt-2">Position</h4>
+            <p class="lead">
+              Latitude is: <b-badge>{{ coords.lat}}</b-badge>
+              <br>
+              Longitude is: <b-badge>{{ coords.long}}</b-badge>
+            </p>
+
+          </div>
+
+          <p v-if="isGeoAvailable === false">
+            Geolocation not available
+          </p>
+
+          <p class="text-danger my-2" v-if="error !== null">
+            {{error}}
+          </p>
+
+        </div>
+
+        <div class="code">
+          <div class="d-flex justify-content-end">
+            <b-button v-b-toggle="'demo1'" variant="outline-secondary" size="sm">Code</b-button>
+          </div>
+          <div class="mt-2">
+            <b-collapse id="demo1">
+              <highlight-code lang="javascript">
+                if ('geolocation' in navigator) {
+                  // geo available
+                  navigator.geolocation
+                    .getCurrentPosition((position) => {
+                      // Position
+                      const lat = position.coords.latitude
+                      const long = position.coords.longitude
+                    }, (error) => {
+                    console.error(error)
+                    })
+                } else {
+                // geo not available
+                }
+              </highlight-code>
+            </b-collapse>
+          </div>
+        </div>
+      </b-card>
+
+      <b-card class="mb-5">
+        <h4>#2</h4>
+        <hr>
+        <div class="data">
+          <b-button variant="primary" size="sm" @click="demo2">Get Position</b-button>
 
           <div v-if="hasCoords">
             <h4 class="mt-2">Position</h4>
@@ -26,10 +83,10 @@
 
         <div class="code">
           <div class="d-flex justify-content-end">
-            <b-button v-b-toggle="'demo1'" variant="outline-secondary" size="sm">Code</b-button>
+            <b-button v-b-toggle="'demo2'" variant="outline-secondary" size="sm">Code</b-button>
           </div>
           <div class="mt-2">
-            <b-collapse id="demo1">
+            <b-collapse id="demo2">
               <highlight-code lang="javascript">
                 navigator.getBattery()
                 .then((battery) => {
@@ -53,6 +110,7 @@
           </div>
         </div>
       </b-card>
+
     </MainBlock>
 
   </div>
@@ -72,7 +130,8 @@ export default {
         lat: '',
         long: ''
       },
-      isGeoAvailable: true
+      isGeoAvailable: true,
+      error: null
     }
   },
   computed: {
@@ -81,7 +140,26 @@ export default {
     }
   },
   methods: {
-    getPosition () {
+    demo1 () {
+      if ('geolocation' in navigator) {
+        navigator.geolocation
+          .getCurrentPosition((position) => {
+            const lat = position.coords.latitude
+            const long = position.coords.longitude
+            this.coords.lat = lat
+            this.coords.long = long
+          }, (error) => {
+            this.error = {
+              code: error.code,
+              msg: error.message
+            }
+            console.error(error)
+          })
+      } else {
+        this.isGeoAvailable = false
+      }
+    },
+    demo2 () {
       if ('geolocation' in navigator) {
         navigator.geolocation
           .getCurrentPosition((position) => {
@@ -96,10 +174,10 @@ export default {
                 console.log('External · Geo API:')
                 console.log(res.results[0].formatted)
                 console.log(res.results[0].components)
-              // console.log(res.results[0].components.country)
-              // console.log(res.results[0].components.state)
-              // console.log(res.results[0].components.county)
-              // console.log(res.results[0].components.city)
+                // console.log(res.results[0].components.country)
+                // console.log(res.results[0].components.state)
+                // console.log(res.results[0].components.county)
+                // console.log(res.results[0].components.city)
               })
           }, (error) => {
             console.error(error)
