@@ -65,14 +65,20 @@
         <div class="data">
           <b-button variant="primary" size="sm" @click="demo2">Get Position</b-button>
 
-          <div v-if="hasCoords">
+          <div v-if="hasCoords2">
             <h4 class="mt-2">Position</h4>
             <p class="lead">
-              Latitude is: <b-badge>{{ coords.lat}}</b-badge>
+              Latitude is: <b-badge>{{ coords2.lat}}</b-badge>
               <br>
-              Longitude is: <b-badge>{{ coords.long}}</b-badge>
+              Longitude is: <b-badge>{{ coords2.long}}</b-badge>
             </p>
-
+          </div>
+          <div v-if="response2 !== null">
+            <p>Country: {{response2.components.country}}</p>
+            <p>State: {{response2.components.state}}</p>
+            <p>City: {{response2.components.city}}</p>
+            <br>
+            <p class="text-muted">Formatted: {{ response2.formatted}}</p>
           </div>
 
           <p v-if="isGeoAvailable === false">
@@ -126,18 +132,22 @@ export default {
   },
   data () {
     return {
+      isGeoAvailable: true,
+      error: null,
       coords: {
         lat: '',
         long: ''
       },
-      isGeoAvailable: true,
-      error: null
+      coords2: {
+        lat: '',
+        long: ''
+      },
+      response2: null
     }
   },
   computed: {
-    hasCoords () {
-      return this.coords.lat !== '' && this.coords.long !== ''
-    }
+    hasCoords () { return this.coords.lat !== '' && this.coords.long !== '' },
+    hasCoords2 () { return this.coords2.lat !== '' && this.coords2.long !== '' }
   },
   methods: {
     demo1 () {
@@ -165,19 +175,16 @@ export default {
           .getCurrentPosition((position) => {
             const lat = position.coords.latitude
             const long = position.coords.longitude
-            this.coords.lat = lat
-            this.coords.long = long
+            this.coords2.lat = lat
+            this.coords2.long = long
             const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${long}&key=8e456d1b8c004a1384e71d9a6c97e94f`
             fetch(url)
               .then(response => response.json())
               .then((res) => {
+                this.response2 = res.results[0]
                 console.log('External · Geo API:')
                 console.log(res.results[0].formatted)
                 console.log(res.results[0].components)
-                // console.log(res.results[0].components.country)
-                // console.log(res.results[0].components.state)
-                // console.log(res.results[0].components.county)
-                // console.log(res.results[0].components.city)
               })
           }, (error) => {
             console.error(error)
