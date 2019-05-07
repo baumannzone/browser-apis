@@ -43,7 +43,9 @@
 
               <hr>
 
-              <img src="/img/telegram-share.png" class="img-fluid  mx-auto d-block" alt="telegram-share" width="350px">
+              <img src="/img/share.png" class="img-thumbnail img-fluid mx-auto d-block" alt="share" width="350px">
+              <br>
+              <img src="/img/telegram-share.png" class="img-thumbnail img-fluid mx-auto d-block" alt="telegram-share" width="350px">
             </b-collapse>
           </div>
         </div>
