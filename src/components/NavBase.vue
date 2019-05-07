@@ -6,6 +6,7 @@
     </template>
   </div>
 </template>
+
 <script>
 export default {
   name: 'NavBase',
@@ -33,6 +34,7 @@ export default {
   }
 }
 </script>
+
 <style lang="stylus">
 
   #nav

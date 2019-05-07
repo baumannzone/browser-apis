@@ -1,6 +1,8 @@
 <template>
   <div id="app">
+
     <div class="container">
+
       <NavBase />
 
       <router-view/>
@@ -8,6 +10,7 @@
       <FooterBase />
 
     </div>
+
   </div>
 </template>
 
