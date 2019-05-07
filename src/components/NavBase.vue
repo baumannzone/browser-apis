@@ -23,7 +23,7 @@ export default {
         { to: '/orientation', name: 'Orientation' },
         { to: '/audio', name: 'Audio' },
         { to: '/bluetooth', name: 'Bluetooth' },
-        { to: '/speech-recognition', name: 'Speech Recognition' },
+        { to: '/speech-recognition', name: 'Speech Recognition' }
       ]
     }
   },

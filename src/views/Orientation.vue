@@ -19,7 +19,8 @@
               <div class="ball"></div>
             </div>
           </div>
-          <pre>{{ result }}</pre>
+          <pre v-if="result.x">{{ result.x }}</pre>
+          <pre v-if="result.y">{{ result.y }}</pre>
         </div>
 
         <div class="code">
@@ -51,11 +52,7 @@ export default {
   },
   data () {
     return {
-      result: {},
-      maxX: null,
-      maxY: null,
-      ball: null,
-      box: null
+      result: {}
     }
   },
   created () {
@@ -69,6 +66,8 @@ export default {
       const maxY = box.clientHeight - ball.clientHeight
       let x = event.beta // In degree in the range [-180,180]
       let y = event.gamma // In degree in the range [-90,90]
+
+      console.log(x, y)
 
       this.result.x = x
       this.result.y = y
