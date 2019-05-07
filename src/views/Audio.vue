@@ -68,17 +68,23 @@
               <highlight-code lang="javascript">
                 const ac = new AudioContext()
                 const oscillator = ac.createOscillator()
-                // Different waves will produce different tones. Standard values are "sine", "square", "sawtooth", "triangle" and "custom".
-                oscillator.type = 'sine' // default
+                // Different waves will produce different tones.
+                // Standard values are "sine", "square", "sawtooth", "triangle" and "custom".
+                oscillator.type = 'square'
+                oscillator.frequency.value = 800
                 oscillator.connect(ac.destination)
                 const time = ac.currentTime
                 oscillator.start(time)
                 oscillator.stop(time + 2)
 
                 oscillator.onended = () => {
-                console.log('Stopped!')
+                  console.log('Stopped!')
                 }
               </highlight-code>
+
+              <hr>
+
+              <img src="/img/waves.png" alt="waves" class="img-fluid img-thumbnail mx-auto d-block">
             </b-collapse>
           </div>
         </div>
@@ -134,10 +140,6 @@ export default {
       const time = ac.currentTime
       oscillator.start(time)
       oscillator.stop(time + 1)
-
-      oscillator.onended = () => {
-        console.log('Stopped!')
-      }
     }
   }
 }
