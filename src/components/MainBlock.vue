@@ -1,5 +1,5 @@
 <template>
-  <div class="MainBlock bg-light p-5">
+  <div class="MainBlock bg-light p-md-5 p-2">
     <h1 v-if="title" class="text-center"> {{ title }} </h1>
     <p v-if="subtitle" class="text-muted lead text-center">{{ subtitle }}</p>
     <hr class="my-5">
