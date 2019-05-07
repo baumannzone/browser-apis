@@ -94,22 +94,18 @@
           <div class="mt-2">
             <b-collapse id="demo2">
               <highlight-code lang="javascript">
-                navigator.getBattery()
-                .then((battery) => {
-                // battery.level · battery.charging · battery.chargingTime · battery.dischargingTime
-
-                /**
-                * Obsolete
-                * This feature is obsolete. Although it may still work in some browsers, its use is discouraged since it could be removed at any time.
-                * Try to avoid using it.
-                */
-                battery.addEventListener('chargingchange', (ev) => {
-                // Handle values
-                })
-
-                battery.addEventListener('levelchange', (ev) => {
-                // Handle values
-                })
+                navigator.geolocation
+                  .getCurrentPosition((position) => {
+                    const lat = position.coords.latitude
+                    const long = position.coords.longitude
+                    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${long}&key=1234567890`
+                  fetch(url)
+                    .then(response => response.json())
+                    .then((res) => {
+                      // Handle response
+                    })
+                  }, (error) => {
+                  // Handle error
                 })
               </highlight-code>
             </b-collapse>
