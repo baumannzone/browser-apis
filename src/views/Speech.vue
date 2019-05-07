@@ -106,8 +106,17 @@
           <b-collapse id="demo3">
 
             <highlight-code lang="javascript">
+              // Check support for speech API
+              if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = this.populateVoiceList
+              } else {
+                console.warn('Nope!')
+              }
+            </highlight-code>
 
-              // onvoiceschanged is async
+            <highlight-code lang="javascript">
+
+              // getVoices
               speechSynthesis.onvoiceschanged = () => {
                 const text = 'Hola, soy Jorge Baumann y mi perro se llama Rambo 🐶'
                 const synth = speechSynthesis
@@ -173,28 +182,29 @@ export default {
     },
     demo1 (ev) {
       ev.preventDefault()
-      const text = this.demo1.input
+      const text = this.form1.input
       const synth = window.speechSynthesis
       const utterThis = new SpeechSynthesisUtterance(text)
       synth.speak(utterThis)
     },
     demo2 (ev) {
       ev.preventDefault()
-      const text = this.inputDemo1
+      const text = this.form2.input
       const synth = window.speechSynthesis
       const utterThis = new SpeechSynthesisUtterance(text)
+      utterThis.pitch = this.form2.pitch
+      utterThis.rate = this.form2.rate
       synth.speak(utterThis)
     },
     demo3 (ev) {
       ev.preventDefault()
+      const text = this.form3.input
       const synth = window.speechSynthesis
       const voice = this.voices.find(v => v.name === this.selectedVoiceName)
-      const utterThis = new SpeechSynthesisUtterance(this.text)
+      const utterThis = new SpeechSynthesisUtterance(text)
       utterThis.voice = voice
       utterThis.pitch = this.form3.pitch
       utterThis.rate = this.form3.rate
-      console.log('utterThis:')
-      console.log(utterThis)
       synth.speak(utterThis)
     }
   }
