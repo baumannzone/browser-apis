@@ -4,12 +4,17 @@
       <b-card class="mb-5">
         <h4>#1</h4>
         <hr>
-        <div v-for="(val, key) in battery" :key="key">
-          <pre>{{ key }}: {{ val }}</pre>
-        </div>
         <div class="data">
-          <i class="fas fa-battery-full"></i>
+          <h4>Battery Manager</h4>
+          <ul>
+            <li><b-badge>Level</b-badge> · {{ battery.level }} %</li>
+            <li><b-badge>Charging</b-badge> · {{ battery.charging ? 'Yes' : 'No'}}</li>
+            <li><b-badge>Charging Time</b-badge> · {{ chargingTime }}</li>
+            <li><b-badge>Discharging Time</b-badge> · {{ dischargingTime }}</li>
+          </ul>
+
         </div>
+
         <div class="code">
           <div class="d-flex justify-content-end">
             <b-button v-b-toggle="'demo1'" variant="outline-secondary" size="sm">Code</b-button>
@@ -42,10 +47,28 @@ export default {
   data () {
     return {
       battery: {
+        level: null, // Val from 0.0 (empty) to 1.0 (fully)
         charging: null,
         chargingTime: null, // Seconds
-        dischargingTime: null, // Seconds
-        level: null // Val from 0.0 (empty) to 1.0 (fully)
+        dischargingTime: null // Seconds
+      }
+    }
+  },
+  computed: {
+    chargingTime () {
+      let temp = this.battery.chargingTime / 60
+      if (temp === Infinity) {
+        return temp
+      } else {
+        return `${temp} min.`
+      }
+    },
+    dischargingTime () {
+      let temp = this.battery.dischargingTime / 60
+      if (temp === Infinity) {
+        return temp
+      } else {
+        return `${temp} min.`
       }
     }
   },
@@ -57,7 +80,7 @@ export default {
       navigator.getBattery()
         .then((battery) => {
           // console.log('Battery Manager:')
-          // console.table(battery)
+          console.table(battery)
 
           this.battery.level = battery.level * 100
           this.battery.charging = battery.charging
