@@ -22,26 +22,40 @@
           <div class="mt-2">
             <b-collapse id="demo1">
               <highlight-code lang="javascript">
-                /**
-                * This feature is obsolete. Although it may still work in some browsers, its use is discouraged since it could be removed at any time.
-                * Try to avoid using it.
-                */
-                navigator.getBattery()
-                .then((battery) => {
-                // battery.level · battery.charging · battery.chargingTime · battery.dischargingTime
-                battery.addEventListener('chargingchange', (ev) => {
-                // Handle values
-                })
-
-                battery.addEventListener('levelchange', (ev) => {
-                // Handle values
-                })
+                // Ask
+                Notification.requestPermission()
+                  .then((permission) => {
+                    if (permission === 'granted') {
+                      new Notification('Notification title', { body: 'Notification message not very long', icon: '' })
+                    }
                 })
               </highlight-code>
             </b-collapse>
           </div>
         </div>
       </b-card>
+
+      <b-card class="mb-5">
+        <h4>#2</h4>
+        <hr>
+        <div class="data">
+          <b-button variant="primary" size="sm" @click="demo2">Notifications</b-button>
+        </div>
+
+        <div class="code">
+          <div class="d-flex justify-content-end">
+            <b-button v-b-toggle="'demo2'" variant="outline-secondary" size="sm">Code</b-button>
+          </div>
+          <div class="mt-2">
+            <b-collapse id="demo2">
+              <highlight-code lang="javascript">
+                // dude
+              </highlight-code>
+            </b-collapse>
+          </div>
+        </div>
+      </b-card>
+
     </MainBlock>
 
   </div>
@@ -71,7 +85,17 @@ export default {
         .then((permission) => {
           this.permission = permission
           if (permission === 'granted') {
-            const noti = new Notification('😠😠 3. horas. probando', { body: 'Tenía el modo no molestar...🤦‍♂️' })
+            const noti = new Notification('Notification title', { body: 'Notification message not very long' })
+            console.log(noti)
+          }
+        })
+    },
+    demo2 () {
+      Notification.requestPermission()
+        .then((permission) => {
+          this.permission = permission
+          if (permission === 'granted') {
+            const noti = new Notification('My Super Duper Title 🙊', { body: 'Notification message a little bit longer...', icon: '/img/js.png' })
             console.log(noti)
           }
         })
