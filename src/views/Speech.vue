@@ -16,7 +16,7 @@
         <b-form @submit="demo1">
 
           <b-form-group label="Text:" label-for="inputDemo1">
-            <b-form-input id="inputDemo1" v-model="form1.input" placeholder="Type something.."></b-form-input>
+            <b-form-input id="inputDemo1" v-model="form1.input" placeholder="Type something.." autocomplete="off"></b-form-input>
           </b-form-group>
 
           <b-button type="submit" variant="primary" size="sm">Submit</b-button>
@@ -42,7 +42,7 @@
         <b-form @submit="demo2">
 
           <b-form-group label="Text:" label-for="inputDemo2">
-            <b-form-input id="inputDemo2" v-model="form2.input" placeholder="Type something cool.."></b-form-input>
+            <b-form-input id="inputDemo2" v-model="form2.input" placeholder="Type something cool.." autocomplete="off"></b-form-input>
           </b-form-group>
 
           <b-form-group label="Pitch (Tone)" label-for="rangePitchDemo2">
@@ -83,7 +83,7 @@
         <b-form @submit="demo3">
 
           <b-form-group label="Text:" label-for="inputDemo3">
-            <b-form-input id="inputDemo3" v-model="form3.input" placeholder="🦄 Type something awesome.."></b-form-input>
+            <b-form-input id="inputDemo3" v-model="form3.input" placeholder="🦄 Type something awesome.." autocomplete="off"></b-form-input>
           </b-form-group>
 
           <b-form-group label="Voices:">
