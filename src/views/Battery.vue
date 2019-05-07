@@ -1,5 +1,6 @@
 <template>
   <div class="battery-api">
+
     <MainBlock title="Battery Status API">
       <b-card class="mb-5">
         <h4>#1</h4>
