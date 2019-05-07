@@ -11,9 +11,9 @@
         <h4>#1</h4>
         <hr>
         <div class="data">
-          <b-button variant="primary" size="sm" @click="demo1">Share</b-button>
-          <br>
+          <b-button variant="primary" size="sm" @click="demo1" class="mb-2">Share</b-button>
           <p v-if="message">{{ message }}</p>
+          <p v-if="error">{{ error }}</p>
         </div>
 
         <div class="code">
@@ -38,6 +38,10 @@
                     })
                 }
               </highlight-code>
+
+              <hr>
+
+              <p>Twitter link <a href="https://twitter.com/baumannzone/status/1125746579837734912" target="_blank">demo</a></p>
 
               <hr>
 
@@ -69,7 +73,6 @@ export default {
   },
   methods: {
     demo1 () {
-      console.log('sharing...')
       this.message = ''
       if (navigator.share) {
         const data = {
@@ -87,7 +90,7 @@ export default {
             console.log('Error sharing', error)
           })
       } else {
-        this.error = 'You can not share! ☹️'
+        this.error = 'You can not share! 😭️ · Check with your phone'
       }
     }
   }
