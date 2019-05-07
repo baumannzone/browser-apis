@@ -24,20 +24,18 @@
             <b-collapse id="demo2">
               <highlight-code lang="javascript">
                 if (navigator.share) {
-                const data = {
-                  title: 'Baumannzone',
-                  text: 'Hey, look at this awesome twitter guy! 🙊',
-                  url: 'https://twitter.com/baumannzone'
-                }
-                navigator.share(data)
-                  .then(() => {
-                    this.message = 'Successful share'
-                    console.log('Successful share')
-                  })
-                  .catch((error) => {
-                    this.message = error
-                    console.log('Error sharing', error)
-                  })
+                  const data = {
+                    title: 'Baumannzone',
+                    text: '#io19Extended Hey, look at this awesome twitter guy! 🙊',
+                    url: 'https://twitter.com/baumannzone'
+                  }
+                  navigator.share(data)
+                    .then(() => {
+                      this.message = 'Successful share'
+                    })
+                    .catch((error) => {
+                      console.log('Error sharing', error)
+                    })
                 }
               </highlight-code>
 
