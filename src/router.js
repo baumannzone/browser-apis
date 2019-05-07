@@ -4,7 +4,6 @@ import Router from 'vue-router'
 const routerOptions = [
   { path: '/', name: 'Home' },
   { path: '/speech', name: 'Speech' },
-  { path: '/speech-recognition', name: 'SpeechRecognition' },
   { path: '/battery', name: 'Battery' },
   { path: '/vibration', name: 'Vibration' },
   { path: '/geolocation', name: 'Geolocation' },
@@ -13,6 +12,7 @@ const routerOptions = [
   { path: '/share', name: 'Share' },
   { path: '/orientation', name: 'Orientation' },
   { path: '/bluetooth', name: 'Bluetooth' },
+  { path: '/speech-recognition', name: 'SpeechRecognition' },
   { path: '/media-recorder', name: 'MediaRecorder' }
 ]
 
