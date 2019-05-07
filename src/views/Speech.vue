@@ -127,6 +127,11 @@
               }
 
             </highlight-code>
+
+            <p class="lead">
+              More info & slides <a class="font-weight-bold" href="https://github.com/baumannzone/2awesome4u" target="_blank">here</a>.
+            </p>
+
           </b-collapse>
         </div>
       </b-card>
