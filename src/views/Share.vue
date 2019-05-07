@@ -23,20 +23,27 @@
           <div class="mt-2">
             <b-collapse id="demo2">
               <highlight-code lang="javascript">
-                navigator.geolocation
-                .getCurrentPosition((position) => {
-                const lat = position.coords.latitude
-                const long = position.coords.longitude
-                const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${long}&key=1234567890`
-                fetch(url)
-                .then(response => response.json())
-                .then((res) => {
-                // Handle response
-                })
-                }, (error) => {
-                // Handle error
-                })
+                if (navigator.share) {
+                const data = {
+                  title: 'Baumannzone',
+                  text: 'Hey, look at this awesome twitter guy! 🙊',
+                  url: 'https://twitter.com/baumannzone'
+                }
+                navigator.share(data)
+                  .then(() => {
+                    this.message = 'Successful share'
+                    console.log('Successful share')
+                  })
+                  .catch((error) => {
+                    this.message = error
+                    console.log('Error sharing', error)
+                  })
+                }
               </highlight-code>
+
+              <hr>
+
+              <img src="/img/telegram-share.png" class="img-fluid  mx-auto d-block" alt="telegram-share" width="350px">
             </b-collapse>
           </div>
         </div>
@@ -67,7 +74,7 @@ export default {
       if (navigator.share) {
         const data = {
           title: 'Baumannzone',
-          text: 'Hey, look at this awesome twitter guy! 🙊',
+          text: '#io19Extended Hey, look at this awesome twitter guy! 🙊 #demo',
           url: 'https://twitter.com/baumannzone'
         }
         navigator.share(data)
