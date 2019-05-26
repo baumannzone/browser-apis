@@ -22,14 +22,14 @@
           <div class="mt-2">
             <b-collapse id="demo1">
               <highlight-code lang="javascript">
-                navigator.bluetooth.requestDevice(all)
-                  .then((device) => {
-                    console.log('Name: ' + device.name)
-                    // device.gatt.connect()
-                  })
-                  .catch((error) => {
-                    console.log('Something went wrong. ' + error)
-                  })
+                navigator.bluetooth.requestDevice({ acceptAllDevices: true })
+                .then((device) => {
+                  console.log('Name: ' + device.name)
+                  // device.gatt.connect()
+                })
+                .catch((error) => {
+                  console.log('Something went wrong. ' + error)
+                })
               </highlight-code>
 
               <hr>
@@ -63,7 +63,9 @@ export default {
   methods: {
     demo1 () {
       const all = {
-        acceptAllDevices: true
+        // acceptAllDevices: true,
+        filters: [{ name: 'MI' }],
+        optionalServices: ['battery_service']
       }
 
       navigator.bluetooth.requestDevice(all)
@@ -71,9 +73,31 @@ export default {
           console.log('Name: ' + device.name)
           console.log(device)
           this.name = device.name
+          return device.gatt.connect()
+        })
+        .then(server => {
+          // Getting Battery Service...
+          console.log('Server: ')
+          console.log(server)
+          return server.getPrimaryService('battery_service')
+        })
+        .then(service => {
+          console.log('Service: ')
+          console.log(service)
+          // Getting Battery Level Characteristic...
+          return service.getCharacteristic('battery_level')
+        })
+        .then(characteristic => {
+          // Reading Battery Level...
+          console.log('Characteristic: ')
+          console.log(characteristic)
+          return characteristic.readValue()
+        })
+        .then(value => {
+          console.log('Battery percentage is ' + value.getUint8(0))
         })
         .catch((error) => {
-          console.log('Something went wrong. ' + error)
+          console.log('Something went wrong >>> ' + error)
           this.name = error
         })
     }
