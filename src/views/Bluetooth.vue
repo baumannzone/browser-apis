@@ -63,9 +63,10 @@ export default {
   methods: {
     demo1 () {
       const all = {
-        // acceptAllDevices: true,
-        filters: [{ name: 'MI' }],
-        optionalServices: ['battery_service']
+        acceptAllDevices: true
+        // filters: [{ name: 'MI' }],
+        // optionalServices: ['battery_service']
+        // filters: [{ services: ['battery_service'] }]
       }
 
       navigator.bluetooth.requestDevice(all)
