@@ -12,7 +12,7 @@
         <hr>
         <div class="data">
           <b-button variant="primary" size="sm" @click="demo1">(Try) Connect</b-button>
-          <pre v-if="name" class="mt-2">Name: {{ name }}</pre>
+          <pre v-if="name" class="mt-2">{{ name }}</pre>
         </div>
 
         <div class="code">
@@ -59,21 +59,23 @@ export default {
       name: ''
     }
   },
-  computed: {},
   methods: {
     demo1 () {
-      const all = {
+      const opts = {
         acceptAllDevices: true
-        // filters: [{ name: 'MI' }],
         // optionalServices: ['battery_service']
+        // filters: [{ name: 'MI' }],
         // filters: [{ services: ['battery_service'] }]
+        // filters: [{
+        //   services: ['battery_service']
+        // }]
       }
 
-      navigator.bluetooth.requestDevice(all)
+      navigator.bluetooth.requestDevice(opts)
         .then((device) => {
           console.log('Name: ' + device.name)
           console.log(device)
-          this.name = device.name
+          this.name = `Name: ${device.name}`
           return device.gatt.connect()
         })
         .then(server => {
@@ -98,8 +100,9 @@ export default {
           console.log('Battery percentage is ' + value.getUint8(0))
         })
         .catch((error) => {
-          console.log('Something went wrong >>> ' + error)
-          this.name = error
+          console.log('Something went wrong >>> ')
+          console.warn(error)
+          this.name = `Error: ${error}`
         })
     }
   }
