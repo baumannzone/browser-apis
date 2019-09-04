@@ -1,14 +1,13 @@
 <template>
   <div class="definition">
-    <p class="lead text-muted">
-      The Web Speech API provides two distinct areas of functionality: Speech recognition and Speech synthesis which
-      open up interesting new possibilities for accessibility
-    </p>
-
-    <p class="lead text-muted">
-      Speech Synthesis or text to voice allow us convert text to voice and playing it out of a device's speaker in
-      multiple languages
-    </p>
+    <template v-if="description && descriptionIsArray">
+      <p class="lead text-muted" v-for="(desc, idx) in description" :key="idx">
+        {{ desc }}
+      </p>
+    </template>
+    <template v-else-if="description && descriptionIsString">
+      {{ description }}
+    </template>
   </div>
 </template>
 
@@ -22,8 +21,11 @@ export default {
     }
   },
   computed: {
-    isArray () {
-      return this.description
+    descriptionIsArray () {
+      return Array.isArray(this.description)
+    },
+    descriptionIsString () {
+      return typeof this.description === 'string'
     }
   }
 }
