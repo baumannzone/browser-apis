@@ -3,7 +3,7 @@
     <!-- Sintesis de voz -->
     <MainBlock title="Speech Synthesis" subtitle="aka Text-To-Speech">
 
-      <DefinitionBlock description="descriptionArray"/>
+      <DefinitionBlock :description="description"/>
 
       <!-- Ejemplo -->
       <b-card class="mb-5">
@@ -149,6 +149,8 @@
 import MainBlock from '@/components/MainBlock.vue'
 import DefinitionBlock from '../../components/DefinitionBlock'
 
+import data from './data'
+
 export default {
   name: 'Speech',
   components: {
@@ -172,7 +174,8 @@ export default {
         input: '',
         pitch: 1,
         rate: 1
-      }
+      },
+      description: data.description
     }
   },
   created () {
