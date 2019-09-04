@@ -4,7 +4,7 @@
     <MainBlock title="Web Bluetooth API">
 
       <p class="text-muted lead">
-        The Web Bluetooth API provides the ability to connect and interact with Bluetooth peripherals.
+        The Web Bluetooth API provides the ability to connect and interact with Bluetooth (LE) peripherals.
       </p>
 
       <b-card class="mb-5">
@@ -62,8 +62,9 @@ export default {
   methods: {
     demo1 () {
       const opts = {
-        acceptAllDevices: true
-        // optionalServices: ['battery_service']
+        acceptAllDevices: true,
+        optionalServices: ['battery_service']
+
         // filters: [{ name: 'MI' }],
         // filters: [{ services: ['battery_service'] }]
         // filters: [{

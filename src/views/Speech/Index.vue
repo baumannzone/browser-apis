@@ -3,14 +3,9 @@
     <!-- Sintesis de voz -->
     <MainBlock title="Speech Synthesis" subtitle="aka Text-To-Speech">
 
-      <p class="lead text-muted">
-        The Web Speech API provides two distinct areas of functionality: Speech recognition and Speech synthesis which open up interesting new possibilities for accessibility
-      </p>
+      <DefinitionBlock description="descriptionArray"/>
 
-      <p class="lead text-muted">
-        Speech Synthesis or text to voice allow us convert text to voice and playing it out of a device's speaker in multiple languages
-      </p>
-
+      <!-- Ejemplo -->
       <b-card class="mb-5">
         <h4>#1</h4>
         <b-form @submit="demo1">
@@ -37,6 +32,7 @@
         </div>
       </b-card>
 
+      <!-- Ejemplo -->
       <b-card class="mb-5">
         <h4>#2</h4>
         <b-form @submit="demo2">
@@ -78,6 +74,7 @@
         </div>
       </b-card>
 
+      <!-- Ejemplo -->
       <b-card class="mb-5">
         <h4>#3</h4>
         <b-form @submit="demo3">
@@ -150,10 +147,12 @@
 
 <script>
 import MainBlock from '@/components/MainBlock.vue'
+import DefinitionBlock from '../../components/DefinitionBlock'
 
 export default {
   name: 'Speech',
   components: {
+    DefinitionBlock,
     MainBlock
   },
   data () {
@@ -221,7 +220,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
