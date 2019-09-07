@@ -23,7 +23,7 @@ import Example2 from './Example2'
 import data from './data'
 
 export default {
-  name: 'VibrationAPI',
+  name: 'NotificationsAPI',
   components: {
     MainBlock,
     DefinitionBlock,
