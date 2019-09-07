@@ -13,9 +13,7 @@
       </div>
       <div class="mt-2">
         <b-collapse :id="'demo'+exampleNumber">
-          <highlight-code lang="javascript">
-            <slot name="example-code"></slot>
-          </highlight-code>
+          <slot name="example-code"></slot>
         </b-collapse>
       </div>
     </div>
