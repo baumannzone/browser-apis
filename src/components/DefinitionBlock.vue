@@ -1,12 +1,10 @@
 <template>
   <div class="definition">
     <template v-if="description && descriptionIsArray">
-      <p class="lead text-muted" v-for="(desc, idx) in description" :key="idx">
-        {{ desc }}
-      </p>
+      <p class="lead text-muted" v-for="(desc, idx) in description" :key="idx" v-html="desc"></p>
     </template>
     <template v-else-if="description && descriptionIsString">
-      {{ description }}
+      <p class="lead text-muted" v-html="description"></p>
     </template>
   </div>
 </template>
@@ -16,7 +14,7 @@ export default {
   name: 'DefinitionBlock',
   props: {
     description: {
-      type: Array || String,
+      type: [Array, String],
       required: true
     }
   },
