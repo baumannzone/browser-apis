@@ -28,7 +28,7 @@
     </template>
 
     <template v-slot:example-code>
-      <span class="lang">javascript</span>
+      <CodeLang lang="javascript"/>
       <highlight-code lang="javascript">
       // Check support for speech API
       if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
@@ -62,12 +62,14 @@
 </template>
 
 <script>
-import ExampleBlock from '../../components/ExampleBlock'
+import ExampleBlock from '@/components/ExampleBlock'
+import CodeLang from '@/components/TitleCodeLang'
 
 export default {
   name: 'Example3',
   components: {
-    ExampleBlock
+    ExampleBlock,
+    CodeLang
   },
   data () {
     return {
