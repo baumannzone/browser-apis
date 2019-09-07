@@ -29,7 +29,6 @@ export default {
     DefinitionBlock,
     Example1,
     Example2
-
   },
   data () {
     return {
