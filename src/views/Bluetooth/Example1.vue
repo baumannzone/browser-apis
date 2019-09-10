@@ -46,11 +46,12 @@ export default {
   },
   methods: {
     demo () {
-      const opts = {
+      const options = {
         filters: [
-          { name: 'MI' },
+          // { name: 'MI' },
           { services: ['battery_service'] }
         ]
+        // optionalServices: ['00001802-0000-1000-8000-00805f9b34fb']
       }
 
       // filters: [{ name: 'MI' }],
@@ -79,7 +80,7 @@ export default {
 
       // Error: NotFoundError: No Services matching UUID 0000180f-0000-1000-8000-00805f9b34fb found in Device.
 
-      navigator.bluetooth.requestDevice(opts)
+      navigator.bluetooth.requestDevice(options)
         .then((device) => {
           console.debug(1)
           console.log('Name: ' + device.name)
