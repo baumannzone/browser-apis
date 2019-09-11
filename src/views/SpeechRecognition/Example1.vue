@@ -1,22 +1,43 @@
 <template>
   <ExampleBlock exampleNumber="1">
     <template v-slot:code>
-      <b-form @submit="demo1">
+      <div class="data mb-4">
+        <b-button variant="primary" size="sm" @click="demo">Start</b-button>
+      </div>
+      <template v-if="isRecording">
+        <Recording/>
+      </template>
 
-        <b-form-group label="Text:" label-for="inputDemo1">
-          <b-form-input id="inputDemo1" v-model="form1.input" placeholder="Type something.." autocomplete="off"></b-form-input>
-        </b-form-group>
-
-        <b-button type="submit" variant="primary" size="sm">Submit</b-button>
+      <b-form class="mt-4">
+        <b-input-group>
+          <b-form-input type="text" v-model="transcript" placeholder="Say something funny"></b-form-input>
+          <b-input-group-append>
+            <b-button variant="dark" @click="clearInput">Clear</b-button>
+          </b-input-group-append>
+        </b-input-group>
+        <b-form-text>Confidence: {{ confidence }}</b-form-text>
       </b-form>
     </template>
+
     <template v-slot:example-code>
       <CodeLang lang="javascript"/>
       <highlight-code lang="javascript">
-        const text = 'Hola, soy Jorge Baumann. @baumannzone en twitter'
-        const synth = window.speechSynthesis
-        const utterThis = new SpeechSynthesisUtterance(text)
-        synth.speak(utterThis)
+        if ('SpeechRecognition' in window) {
+          // speech recognition API supported
+        } else {
+          // speech recognition API not supported
+        }
+
+        const recognition = new SpeechRecognition()
+
+        recognition.onresult = (event) => {
+          // What you said
+          console.log(event.results[0][0].transcript)
+        }
+
+        // Start recognition
+        recognition.start()
+
       </highlight-code>
     </template>
   </ExampleBlock>
@@ -25,27 +46,52 @@
 <script>
 import ExampleBlock from '@/components/ExampleBlock'
 import CodeLang from '@/components/TitleCodeLang'
+import Recording from './Recording'
 
 export default {
   name: 'Example1',
   components: {
+    Recording,
     CodeLang,
     ExampleBlock
   },
   data () {
     return {
-      form1: {
-        input: ''
-      }
+      transcript: '',
+      confidence: '',
+      isRecording: false
     }
   },
   methods: {
-    demo1 (ev) {
+    demo (ev) {
       ev.preventDefault()
-      const text = this.form1.input
-      const synth = window.speechSynthesis
-      const utterThis = new SpeechSynthesisUtterance(text)
-      synth.speak(utterThis)
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+      const recognition = new SpeechRecognition()
+
+      recognition.onresult = (event) => {
+        this.transcript = event.results[0][0].transcript
+        this.confidence = event.results[0][0].confidence
+        console.log(event)
+        console.log(event.results[0][0].transcript)
+      }
+
+      recognition.onstart = () => {
+        this.isRecording = true
+        console.log('Speech recognition service has started')
+      }
+
+      recognition.onend = () => {
+        this.isRecording = false
+        console.log('Speech recognition service has finished')
+      }
+
+      // Start recognition
+      recognition.start()
+    },
+    clearInput () {
+      this.transcript = ''
+      this.confidence = ''
     }
   }
 }
