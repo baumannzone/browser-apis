@@ -1,6 +1,6 @@
 export default {
   description: [
-    'The Web Speech API provides two distinct areas of functionality: Speech recognition and Speech synthesis which open up interesting new possibilities for accessibility',
-    'Speech Synthesis or text to voice allow us convert text to voice and playing it out of a device\'s speaker in multiple languages'
+    'Speech recognition is the ability of a machine or program to identify words and phrases in spoken language and convert them to a machine-readable format. Introduced in 2012 by W3C, the Web Speech API specification started to work in modern browsers last year (2018).',
+    'The HTML5 Speech Recognition API allows JavaScript to have access to a browser’s audio stream and to convert it to text.'
   ]
 }
