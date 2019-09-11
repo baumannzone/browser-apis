@@ -17,6 +17,7 @@
         </b-input-group>
         <b-form-text>Confidence: {{ confidence }}</b-form-text>
       </b-form>
+
     </template>
 
     <template v-slot:example-code>
