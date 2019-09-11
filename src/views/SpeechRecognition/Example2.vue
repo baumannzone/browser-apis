@@ -1,27 +1,7 @@
 <template>
   <ExampleBlock exampleNumber="2">
     <template v-slot:code>
-      <b-form @submit="demo2">
-
-        <b-form-group label="Text:" label-for="inputDemo2">
-          <b-form-input id="inputDemo2" v-model="form2.input" placeholder="Type something cool.." autocomplete="off"></b-form-input>
-        </b-form-group>
-
-        <b-form-group label="Pitch (Tone)" label-for="rangePitchDemo2">
-          <b-form-input id="rangePitchDemo2" v-model="form2.pitch" type="range" min="0" max="2" step="0.05">
-          </b-form-input>
-          <small>Value: {{form2.pitch}}</small>
-        </b-form-group>
-
-        <!-- speed -->
-        <b-form-group label="Rate (Speed)" label-for="rangeRateDemo2">
-          <b-form-input id="rangeRateDemo2" v-model="form2.rate" type="range" min="0.46" max="3.6" step="0.01">
-          </b-form-input>
-          <small>Value: {{form2.rate}}</small>
-        </b-form-group>
-
-        <b-button type="submit" variant="primary" size="sm">Submit</b-button>
-      </b-form>
+      <b-button variant="primary" size="sm" @click="demo">Start</b-button>
     </template>
     <template v-slot:example-code>
       <CodeLang lang="javascript"/>
@@ -57,14 +37,31 @@ export default {
     }
   },
   methods: {
-    demo2 (ev) {
-      ev.preventDefault()
-      const text = this.form2.input
-      const synth = window.speechSynthesis
-      const utterThis = new SpeechSynthesisUtterance(text)
-      utterThis.pitch = this.form2.pitch
-      utterThis.rate = this.form2.rate
-      synth.speak(utterThis)
+    demo (ev) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+      const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList
+      // const SpeechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent
+
+      const colors = [ 'aqua', 'azure', 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 'fuchsia', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 'orchid', 'peru', 'pink', 'plum', 'purple', 'red', 'salmon', 'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'white', 'yellow' ]
+      // More Info: https://en.wikipedia.org/wiki/JSGF
+      const grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;'
+
+      const recognition = new SpeechRecognition()
+      const speechRecognitionList = new SpeechGrammarList()
+      speechRecognitionList.addFromString(grammar, 1)
+      recognition.grammars = speechRecognitionList
+      // recognition.continuous = false;
+      recognition.lang = 'en-US'
+      recognition.interimResults = false
+      recognition.maxAlternatives = 1
+
+      recognition.start()
+      console.log('Ready to receive a color command.')
+
+      recognition.onresult = (event) => {
+        const color = event.results[0][0].transcript
+        console.log('Result received: ' + color)
+      }
     }
   }
 }
