@@ -23,6 +23,7 @@
     <template v-slot:example-code>
       <CodeLang lang="javascript"/>
       <highlight-code lang="javascript">
+        // Pages hosted on HTTPS do not need to ask repeatedly for permission, whereas HTTP hosted pages do
         // Streaming results as they are received
         // you can start to render results before the user has stopped talking
 
