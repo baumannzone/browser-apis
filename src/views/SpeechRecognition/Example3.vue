@@ -9,6 +9,10 @@
       </template>
 
       <b-form class="mt-4">
+        <b-form-group label="Lang">
+          <b-form-radio v-model="selectedLang" name="some-radios" value="es-ES">Spanish</b-form-radio>
+          <b-form-radio v-model="selectedLang" name="some-radios" value="en-US">English</b-form-radio>
+        </b-form-group>
         <b-input-group>
           <b-form-input type="text" v-model="transcript" placeholder="Say something funny"></b-form-input>
           <b-input-group-append>
@@ -18,38 +22,28 @@
         <b-form-text>Confidence: {{ confidence }}</b-form-text>
       </b-form>
 
+      <p class="lead text-center my-3 p-3" :class="resultClass">{{ selectedPhrase }}</p>
+
     </template>
 
     <template v-slot:example-code>
       <CodeLang lang="javascript"/>
       <highlight-code lang="javascript">
-        // Streaming results as they are received
-        // you can start to render results before the user has stopped talking
-
         const recognition = new SpeechRecognition()
+        // recognition.lang = 'es-ES'
+        // recognition.lang = 'en-US'
 
-        // Streaming "Realtime"
-        recognition.interimResults = true
-
-        // Max num of possible alternatives
-        recognition.maxAlternatives = 10
+        // Get some phrase
+        const phrase = randomPhrase()
 
         recognition.onresult = (event) => {
-        // What you said
-        console.log(event.results[0][0].transcript)
-        }
+          const transcript = event.results[0][0].transcript
 
-        recognition.onstart = () => {
-        isRecording = true
-        console.log('Speech recognition service has started')
+          // Check if it matches
+          if (phrase.toLocaleLowerCase() === transcript.toLocaleLowerCase()) {
+            // ...
+          }
         }
-
-        recognition.onend = () => {
-        isRecording = false
-        console.log('Speech recognition service has finished')
-        }
-
-        // ...
 
         // Start recognition
         recognition.start()
@@ -64,8 +58,10 @@ import ExampleBlock from '@/components/ExampleBlock'
 import CodeLang from '@/components/TitleCodeLang'
 import Recording from './Recording'
 
+import data from './data'
+
 export default {
-  name: 'Example1',
+  name: 'Example3',
   components: {
     Recording,
     CodeLang,
@@ -75,49 +71,51 @@ export default {
     return {
       transcript: '',
       confidence: '',
-      isRecording: false
+      isRecording: false,
+      phrases: data.phrases,
+      selectedPhrase: '',
+      selectedLang: 'es-ES',
+      resultClass: ''
     }
   },
   methods: {
     demo () {
+      this.clearInput()
+      this.resultClass = ''
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
       const recognition = new SpeechRecognition()
+      this.selectedPhrase = this.randomPhrase()
+      const phrase = this.selectedPhrase
 
-      recognition.interimResults = true
-      recognition.maxAlternatives = 10
+      recognition.lang = this.selectedLang
 
       recognition.onresult = (event) => {
-        console.log(event)
         this.transcript = event.results[0][0].transcript
         this.confidence = event.results[0][0].confidence
-      }
 
-      recognition.onnomatch = () => {
-        console.log('Speech not recognised')
-      }
+        console.log(phrase.toLocaleLowerCase() === this.transcript.toLocaleLowerCase())
 
-      recognition.onsoundstart = () => {
-        console.log('Some sound is being received')
-      }
-
-      recognition.onsoundend = () => {
-        console.log('Sound has stopped being received')
+        if (phrase.toLocaleLowerCase() === this.transcript.toLocaleLowerCase()) {
+          this.resultClass = 'bg-success text-white'
+          this.selectedPhrase = `🥳🥳🥳 ${phrase} 🥳🥳🥳`
+        } else {
+          this.resultClass = 'bg-danger text-white'
+          this.selectedPhrase = `😒 ${phrase} 😳😭😭😭`
+        }
       }
 
       recognition.onstart = () => {
         this.isRecording = true
-        console.log('Speech recognition service has started')
       }
-
       recognition.onend = () => {
         this.isRecording = false
-        console.log('Speech recognition service has finished')
       }
 
-      console.log('recognition.lang')
-      console.log(recognition.lang)
-
       recognition.start()
+    },
+    randomPhrase () {
+      const num = Math.floor(Math.random() * this.phrases.length)
+      return this.phrases[num]
     },
     clearInput () {
       this.transcript = ''
