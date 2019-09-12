@@ -66,7 +66,7 @@ import CodeLang from '@/components/TitleCodeLang'
 import Recording from './Recording'
 
 export default {
-  name: 'Example1',
+  name: 'Example2',
   components: {
     Recording,
     CodeLang,
