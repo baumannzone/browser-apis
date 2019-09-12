@@ -30,13 +30,19 @@
       <CodeLang lang="javascript"/>
       <highlight-code lang="javascript">
         const recognition = new SpeechRecognition()
-
         // recognition.lang = 'es-ES'
         // recognition.lang = 'en-US'
 
+        // Get some phrase
+        const phrase = randomPhrase()
+
         recognition.onresult = (event) => {
-          console.log(event.results[0][0].transcript)
-          const hasMatch = phrase.toLocaleLowerCase() === this.transcript.toLocaleLowerCase()
+          const transcript = event.results[0][0].transcript
+
+          // Check if it matches
+          if (phrase.toLocaleLowerCase() === transcript.toLocaleLowerCase()) {
+            // ...
+          }
         }
 
         // Start recognition
