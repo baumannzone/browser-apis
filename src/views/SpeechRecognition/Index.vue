@@ -1,6 +1,6 @@
 <template>
-  <div class="speech">
-    <!-- Sintesis de voz -->
+  <div class="speech-recognition">
+
     <MainBlock title="Speech Recognition" subtitle="aka Voice-To-Text">
 
       <DefinitionBlock :description="description"/>
