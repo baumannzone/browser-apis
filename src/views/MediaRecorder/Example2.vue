@@ -46,6 +46,8 @@
 
             mediaRecorder.onstop = (e) => {
               // Process chunks
+              const blob = new Blob(chunks, { type: 'video/webm' })
+              const videoURL = window.URL.createObjectURL(blob)
             }
 
           })
@@ -94,7 +96,7 @@ export default {
           this.mediaRecorder.onstop = (e) => {
             console.log('recorder stopped')
 
-            var blob = new Blob(this.chunks, { type: 'video/webm' })
+            const blob = new Blob(this.chunks, { type: 'video/webm' })
             const videoURL = window.URL.createObjectURL(blob)
             this.chunks = []
 
