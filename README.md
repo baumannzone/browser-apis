@@ -1,6 +1,7 @@
 # ¿Sabías que tu navegador puede hablar?
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 ## Y otras Web APIs 🤓
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
 #### Google IO Extended Madrid 2019 · Demos 
 
