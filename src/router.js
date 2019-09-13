@@ -13,7 +13,8 @@ const routerOptions = [
   { path: '/orientation', name: 'Orientation' },
   { path: '/bluetooth', name: 'Bluetooth' },
   { path: '/speech-recognition', name: 'SpeechRecognition' },
-  { path: '/media-recorder', name: 'MediaRecorder' }
+  { path: '/media-recorder', name: 'MediaRecorder' },
+  { path: '/image-capture', name: 'ImageCapture' }
 ]
 
 const routes = routerOptions.map(route => {

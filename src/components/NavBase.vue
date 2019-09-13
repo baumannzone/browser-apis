@@ -24,7 +24,8 @@ export default {
         { to: '/audio', name: 'Audio' },
         { to: '/bluetooth', name: 'Bluetooth' },
         { to: '/speech-recognition', name: 'Speech Recognition' },
-        { to: '/media-recorder', name: 'Media Recorder' }
+        { to: '/media-recorder', name: 'Media Recorder' },
+        { to: '/image-capture', name: 'Image Capture' }
       ]
     }
   },
