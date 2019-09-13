@@ -16,31 +16,11 @@
     <template v-slot:example-code>
       <CodeLang lang="javascript"/>
       <highlight-code lang="javascript">
-        // Audio & Video
-        navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
           .then((stream) => {
-            // stream
-
-            mediaRecorder = new MediaRecorder(stream)
-
-            // Save chunks
-            mediaRecorder.ondataavailable = (e) => {
-              chunks.push(e.data)
-            }
-
-            mediaRecorder.onstop = (e) => {
-              // Process chunks
-              const blob = new Blob(chunks, { type: 'video/webm' })
-              const videoURL = window.URL.createObjectURL(blob)
-            }
-
+            // Get video element in DOM
+            videoElement.srcObject = stream
           })
-
-      </highlight-code>
-
-      <highlight-code>
-        mediaRecorder.start()
-        mediaRecorder.stop()
       </highlight-code>
     </template>
   </ExampleBlock>
@@ -70,24 +50,6 @@ export default {
         .then((stream) => {
           console.log(this.$refs.player)
           this.$refs.player.srcObject = stream
-          // this.inputVideo = new MediaStream(stream)
-          // this.mediaRecorder = new MediaRecorder(stream)
-
-          // this.mediaRecorder.ondataavailable = (e) => {
-          //   this.chunks.push(e.data)
-          // }
-
-          // this.mediaRecorder.onstop = (e) => {
-          //   console.log('recorder stopped')
-          //
-          //   const blob = new Blob(this.chunks, { type: 'video/webm' })
-          //   const videoURL = window.URL.createObjectURL(blob)
-          //   this.chunks = []
-          //
-          //   this.videoList.push({
-          //     src: videoURL
-          //   })
-          // }
         })
         .catch((err) => {
           console.log('Err: ' + err)
