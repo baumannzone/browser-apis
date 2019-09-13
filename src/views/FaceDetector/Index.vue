@@ -1,15 +1,11 @@
 <template>
-  <div class="speech-recognition">
+  <div class="face-detector">
 
-    <MainBlock title="MediaStream Recording API" subtitle="aka Media Recording API">
+    <MainBlock title="Shape Detection API" subtitle="aka Face Detector API">
 
       <DefinitionBlock :description="description"/>
 
         <Example1 />
-
-        <Example2 />
-
-        <Example3 />
 
     </MainBlock>
   </div>
@@ -20,19 +16,15 @@ import MainBlock from '@/components/MainBlock.vue'
 import DefinitionBlock from '@/components/DefinitionBlock'
 
 import Example1 from './Example1'
-import Example2 from './Example2'
-import Example3 from './Example3'
 
 import data from './data'
 
 export default {
-  name: 'MediaRecorder',
+  name: 'FaceDetector',
   components: {
     DefinitionBlock,
     MainBlock,
-    Example1,
-    Example2,
-    Example3
+    Example1
   },
   data () {
     return {

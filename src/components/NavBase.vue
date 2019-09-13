@@ -14,7 +14,7 @@ export default {
     return {
       routes: [
         { to: '/', name: 'Home' },
-        { to: '/speech', name: 'Speech' },
+        { to: '/speech', name: 'Speech Synthesis' },
         { to: '/battery', name: 'Battery' },
         { to: '/geolocation', name: 'Geolocation' },
         { to: '/vibration', name: 'Vibration' },
@@ -24,7 +24,9 @@ export default {
         { to: '/audio', name: 'Audio' },
         { to: '/bluetooth', name: 'Bluetooth' },
         { to: '/speech-recognition', name: 'Speech Recognition' },
-        { to: '/media-recorder', name: 'Media Recorder' }
+        { to: '/media-recorder', name: 'Media Recorder' },
+        { to: '/image-capture', name: 'Image Capture' },
+        { to: '/face-detector', name: 'Face Detector' }
       ]
     }
   },

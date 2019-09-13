@@ -66,7 +66,7 @@ export default {
       if (navigator.share) {
         const data = {
           title: 'Baumannzone',
-          text: '#io19Extended Hey, look at this awesome twitter guy! 🙊 #demo',
+          text: '#TechParty2019 Hey, look at this awesome twitter guy! 🙊 #demo',
           url: 'https://twitter.com/baumannzone'
         }
         navigator.share(data)

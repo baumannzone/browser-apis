@@ -1,15 +1,13 @@
 <template>
   <div class="speech-recognition">
 
-    <MainBlock title="MediaStream Recording API" subtitle="aka Media Recording API">
+    <MainBlock title="MediaStream Image Capture API">
 
       <DefinitionBlock :description="description"/>
 
         <Example1 />
 
         <Example2 />
-
-        <Example3 />
 
     </MainBlock>
   </div>
@@ -21,18 +19,16 @@ import DefinitionBlock from '@/components/DefinitionBlock'
 
 import Example1 from './Example1'
 import Example2 from './Example2'
-import Example3 from './Example3'
 
 import data from './data'
 
 export default {
-  name: 'MediaRecorder',
+  name: 'ImageCapture',
   components: {
     DefinitionBlock,
     MainBlock,
     Example1,
-    Example2,
-    Example3
+    Example2
   },
   data () {
     return {

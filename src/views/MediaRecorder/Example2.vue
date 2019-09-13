@@ -67,7 +67,7 @@ import ExampleBlock from '@/components/ExampleBlock'
 import CodeLang from '@/components/TitleCodeLang'
 
 export default {
-  name: 'Example1',
+  name: 'Example2',
   components: {
     CodeLang,
     ExampleBlock
