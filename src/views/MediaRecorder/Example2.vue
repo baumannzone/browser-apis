@@ -1,8 +1,8 @@
 <template>
-  <ExampleBlock exampleNumber="1">
+  <ExampleBlock exampleNumber="2">
     <template v-slot:code>
       <div class="data">
-        <h5>Audio Recorder</h5>
+        <h5>Video Recorder</h5>
         <div class="d-flex justify-content-end">
           <b-badge v-if="supported" pill variant="success">Supported</b-badge>
           <b-badge v-else pill variant="danger">Not supported</b-badge>
@@ -10,13 +10,17 @@
         <template v-if="supported">
           <b-button variant="primary" size="sm" @click="start" class="mr-2">Start</b-button>
           <b-button size="sm" @click="stop">Stop</b-button>
-          <div v-if="hasAudios">
+          <div v-if="hasVideos">
             <hr>
-            <ul class="list-unstyled audio-list">
-              <li v-for="(item, idx) in audioList" :key="idx" class="audio-item mb-3">
-                <div class="d-flex justify-content-end">
-                  <audio controls :src="item.src" class="mr-2"></audio>
-                  <b-button variant="danger" size="sm" @click="removeItem(idx)">Delete</b-button>
+            <ul class="list-unstyled video-list">
+              <li v-for="(item, idx) in videoList" :key="idx" class="video-item mb-3">
+                <div class="d-flex justify-content-between bg-light p-2">
+                  <video controls muted autoplay :src="item.src">
+                    <code>video</code> not supported
+                  </video>
+                  <div class="d-flex align-items-center">
+                    <b-button variant="danger" size="sm" @click="removeItem(idx)">Delete</b-button>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -28,14 +32,8 @@
     <template v-slot:example-code>
       <CodeLang lang="javascript"/>
       <highlight-code lang="javascript">
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-          // Supported
-        } else {
-          // Not supported
-        }
-
-        // Asking for audio only (mic)
-        navigator.mediaDevices.getUserMedia({ audio: true })
+        // Audio & Video
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true })
           .then((stream) => {
             // stream
 
@@ -50,9 +48,6 @@
               // Process chunks
             }
 
-          })
-          .catch((err) => {
-            // err
           })
 
       </highlight-code>
@@ -80,13 +75,13 @@ export default {
       supported: false,
       mediaRecorder: undefined,
       chunks: [],
-      audioList: []
+      videoList: []
     }
   },
   created () {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       this.supported = true
-      navigator.mediaDevices.getUserMedia({ audio: true })
+      navigator.mediaDevices.getUserMedia({ audio: true, video: true })
         .then((stream) => {
           console.log(stream)
 
@@ -99,12 +94,12 @@ export default {
           this.mediaRecorder.onstop = (e) => {
             console.log('recorder stopped')
 
-            var blob = new Blob(this.chunks, { 'type': 'audio/ogg; codecs=opus' })
+            var blob = new Blob(this.chunks, { type: 'video/webm' })
+            const videoURL = window.URL.createObjectURL(blob)
             this.chunks = []
-            const audioURL = window.URL.createObjectURL(blob)
 
-            this.audioList.push({
-              src: audioURL
+            this.videoList.push({
+              src: videoURL
             })
           }
         })
@@ -116,8 +111,8 @@ export default {
     }
   },
   computed: {
-    hasAudios () {
-      return this.audioList.length > 0
+    hasVideos () {
+      return this.videoList.length > 0
     }
   },
   methods: {
@@ -131,16 +126,15 @@ export default {
       console.log(this.mediaRecorder.state)
     },
     removeItem (idx) {
-      this.audioList.splice(idx, 1)
+      this.videoList.splice(idx, 1)
     }
   }
 }
 </script>
 
 <style lang="stylus">
-.audio-list
-  .audio-item
-    audio
-      width 100%
-      height 31px
+.video-list
+  .video-item
+    video
+      width 200px
 </style>

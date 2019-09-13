@@ -7,6 +7,8 @@
 
       <Example1 />
 
+      <Example2 />
+
     </MainBlock>
   </div>
 </template>
@@ -16,6 +18,7 @@ import MainBlock from '@/components/MainBlock.vue'
 import DefinitionBlock from '@/components/DefinitionBlock'
 
 import Example1 from './Example1'
+import Example2 from './Example2'
 
 import data from './data'
 
@@ -24,7 +27,8 @@ export default {
   components: {
     DefinitionBlock,
     MainBlock,
-    Example1
+    Example1,
+    Example2
   },
   data () {
     return {
