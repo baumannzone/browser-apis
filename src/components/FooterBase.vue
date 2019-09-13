@@ -1,5 +1,6 @@
 <template>
   <footer class="my-5">
+    <hr class="mb-5">
     <div class="text-center">
       <ul class="list-inline">
         <li class="list-inline-item">
@@ -18,12 +19,13 @@
           </a>
         </li>
         <li class="list-inline-item">
-          <a href="https://www.youtube.com/channel/UCbi2eMmxUEU0unLlmm727NA" target="_blank">
+          <a href="https://www.youtube.com/channel/UCTTj5ztXnGeDRPFVsBp7VMA" target="_blank">
             <i class="youtube-ico fab fa-youtube"></i>
           </a>
         </li>
       </ul>
-      <small>Powered by
+
+      <span>Powered by
         <a href="https://vuejs.org/">
           <i class="vue-ico fab fa-vuejs"></i>
         </a>
@@ -31,7 +33,7 @@
         <a href="https://bootstrap-vue.js.org/">
           <i class="bootstrap-ico fab fa-bootstrap"></i>
         </a>
-      </small>
+      </span>
     </div>
   </footer>
 </template>
@@ -43,8 +45,9 @@ export default {
 </script>
 
 <style lang="stylus">
-
   footer
+    ul li a
+      font-size 18px
     .github-ico
       color #24292d
     .youtube-ico

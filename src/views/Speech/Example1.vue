@@ -35,7 +35,7 @@ export default {
   data () {
     return {
       form1: {
-        input: ''
+        input: 'Hola, soy Jorge Baumann, @baumannzone en twitter'
       }
     }
   },

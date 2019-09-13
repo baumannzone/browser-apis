@@ -78,8 +78,6 @@ export default {
       //   })
       //   .catch(error => { console.log('error: ', error) })
 
-      // Error: NotFoundError: No Services matching UUID 0000180f-0000-1000-8000-00805f9b34fb found in Device.
-
       navigator.bluetooth.requestDevice(options)
         .then((device) => {
           console.debug(1)
