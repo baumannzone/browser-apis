@@ -5,9 +5,11 @@
 
       <DefinitionBlock :description="description"/>
 
-      <Example1 />
+        <Example1 />
 
-      <Example2 />
+        <Example2 />
+
+        <Example3 />
 
     </MainBlock>
   </div>
@@ -19,16 +21,18 @@ import DefinitionBlock from '@/components/DefinitionBlock'
 
 import Example1 from './Example1'
 import Example2 from './Example2'
+import Example3 from './Example3'
 
 import data from './data'
 
 export default {
-  name: 'SpeechRecognition',
+  name: 'MediaRecorder',
   components: {
     DefinitionBlock,
     MainBlock,
     Example1,
-    Example2
+    Example2,
+    Example3
   },
   data () {
     return {

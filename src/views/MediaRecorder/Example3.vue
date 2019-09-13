@@ -1,30 +1,14 @@
 <template>
-  <ExampleBlock exampleNumber="2">
+  <ExampleBlock exampleNumber="3">
     <template v-slot:code>
       <div class="data">
-        <h5>Video Recorder</h5>
+        <h5>Real Time</h5>
         <div class="d-flex justify-content-end">
           <b-badge v-if="supported" pill variant="success">Supported</b-badge>
           <b-badge v-else pill variant="danger">Not supported</b-badge>
         </div>
         <template v-if="supported">
-          <b-button variant="primary" size="sm" @click="start" class="mr-2">Start</b-button>
-          <b-button size="sm" @click="stop">Stop</b-button>
-          <div v-if="hasVideos">
-            <hr>
-            <ul class="list-unstyled video-list">
-              <li v-for="(item, idx) in videoList" :key="idx" class="video-item mb-3">
-                <div class="d-flex justify-content-between bg-light p-2">
-                  <video controls muted autoplay :src="item.src">
-                    <code>video</code> not supported
-                  </video>
-                  <div class="d-flex align-items-center">
-                    <b-button variant="danger" size="sm" @click="removeItem(idx)">Delete</b-button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <video autoplay ref="player"></video>
         </template>
       </div>
     </template>
@@ -67,7 +51,7 @@ import ExampleBlock from '@/components/ExampleBlock'
 import CodeLang from '@/components/TitleCodeLang'
 
 export default {
-  name: 'Example2',
+  name: 'Example3',
   components: {
     CodeLang,
     ExampleBlock
@@ -76,34 +60,34 @@ export default {
     return {
       supported: false,
       mediaRecorder: undefined,
-      chunks: [],
-      videoList: []
+      inputVideo: undefined
     }
   },
   created () {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       this.supported = true
-      navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then((stream) => {
-          console.log(stream)
+          console.log(this.$refs.player)
+          this.$refs.player.srcObject = stream
+          // this.inputVideo = new MediaStream(stream)
+          // this.mediaRecorder = new MediaRecorder(stream)
 
-          this.mediaRecorder = new MediaRecorder(stream)
+          // this.mediaRecorder.ondataavailable = (e) => {
+          //   this.chunks.push(e.data)
+          // }
 
-          this.mediaRecorder.ondataavailable = (e) => {
-            this.chunks.push(e.data)
-          }
-
-          this.mediaRecorder.onstop = (e) => {
-            console.log('recorder stopped')
-
-            const blob = new Blob(this.chunks, { type: 'video/webm' })
-            const videoURL = window.URL.createObjectURL(blob)
-            this.chunks = []
-
-            this.videoList.push({
-              src: videoURL
-            })
-          }
+          // this.mediaRecorder.onstop = (e) => {
+          //   console.log('recorder stopped')
+          //
+          //   const blob = new Blob(this.chunks, { type: 'video/webm' })
+          //   const videoURL = window.URL.createObjectURL(blob)
+          //   this.chunks = []
+          //
+          //   this.videoList.push({
+          //     src: videoURL
+          //   })
+          // }
         })
         .catch((err) => {
           console.log('Err: ' + err)
@@ -113,22 +97,14 @@ export default {
     }
   },
   computed: {
-    hasVideos () {
-      return this.videoList.length > 0
-    }
+
   },
   methods: {
     start () {
-      this.mediaRecorder.start()
-      console.log(this.mediaRecorder.state)
-      console.log('recorder started')
+      // this.mediaRecorder.start()
     },
     stop () {
-      this.mediaRecorder.stop()
-      console.log(this.mediaRecorder.state)
-    },
-    removeItem (idx) {
-      this.videoList.splice(idx, 1)
+      // this.mediaRecorder.stop()
     }
   }
 }
