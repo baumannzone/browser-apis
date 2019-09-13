@@ -46,39 +46,7 @@ export default {
   },
   methods: {
     demo () {
-      const options = {
-        filters: [
-          // { name: 'MI' },
-          { services: ['battery_service'] }
-        ]
-        // optionalServices: ['00001802-0000-1000-8000-00805f9b34fb']
-      }
-
-      // filters: [{ name: 'MI' }],
-      // filters: [{ services: ['battery_service'] }]
-      // filters: [{
-      //   services: ['battery_service']
-      // }]
-
-      // return navigator.bluetooth.requestDevice({ filters: [{ name: 'My Myo' }, { services: ['battery_service'] }] })
-      //   .then(device => {
-      //     return device.gatt.connect()
-      //   })
-      //   .then(server => {
-      //     return server.getPrimaryService('battery_service')
-      //   })
-      //   .then(service => {
-      //     return service.getCharacteristic('battery_level')
-      //   })
-      //   .then(characteristic => {
-      //     return characteristic.readValue()
-      //   })
-      //   .then(value => {
-      //     console.log(value.getUint8(0))
-      //   })
-      //   .catch(error => { console.log('error: ', error) })
-
-      navigator.bluetooth.requestDevice(options)
+      navigator.bluetooth.requestDevice({ acceptAllDevices: true })
         .then((device) => {
           console.debug(1)
           console.log('Name: ' + device.name)
