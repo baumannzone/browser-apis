@@ -28,7 +28,7 @@
             // Capture
             imageCapture.takePhoto()
               .then(blob => {
-                // Our image here, easy as F*** 💘
+                // Our image here, easy as f*** 💘
                 imageSrc = window.URL.createObjectURL(blob)
 
                 // https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL
