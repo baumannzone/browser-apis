@@ -14,7 +14,7 @@ export default {
     return {
       routes: [
         { to: '/', name: 'Home' },
-        { to: '/speech', name: 'Speech' },
+        { to: '/speech', name: 'Speech Synthesis' },
         { to: '/battery', name: 'Battery' },
         { to: '/geolocation', name: 'Geolocation' },
         { to: '/vibration', name: 'Vibration' },
