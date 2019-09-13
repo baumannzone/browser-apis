@@ -5,7 +5,7 @@
         <div class="mb-2">
           <b-button variant="primary" size="sm" @click="demo">Check Faces</b-button>
         </div>
-        <div class="wrap" ref="wrap">
+        <div id="wrap" class="wrap" ref="wrap">
           <!-- https://unsplash.com/photos/T6zu4jFhVwg -->
           <img src="../../assets/faces.png" alt="img" ref="image">
         </div>
@@ -50,20 +50,23 @@ export default {
   },
   methods: {
     demo () {
-      this.removeFaceBoxes()
-
       if (typeof window.FaceDetector === 'undefined') {
         console.log('No face detection!')
         return
       }
+
+      // Clear face box
+      const arrFaces = [...document.getElementsByClassName('face')]
+      arrFaces.forEach((face) => {
+        face.parentNode.removeChild(face)
+      })
       const faceDetector = new window.FaceDetector()
 
       faceDetector.detect(this.$refs.image)
         .then(faces => {
+          console.log(faces)
           faces.forEach((face) => {
-            console.log(face)
-
-            // Face
+            // Face box
             const { width, height, top, left } = face.boundingBox
             const faceBox = document.createElement('div')
             faceBox.classList.add('face')
@@ -80,13 +83,6 @@ export default {
         .catch((err) => {
           console.error(err.toString())
         })
-    },
-    removeFaceBoxes () {
-      const faces = Array.from(document.getElementsByClassName('face'))
-      faces.forEach(face => {
-        console.log('face')
-        console.log(face)
-      })
     }
   }
 }
