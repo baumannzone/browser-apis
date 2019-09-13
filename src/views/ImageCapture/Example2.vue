@@ -2,61 +2,53 @@
   <ExampleBlock exampleNumber="2">
     <template v-slot:code>
       <div class="data">
-        <h5>Video Recorder</h5>
-        <div class="d-flex justify-content-end">
-          <b-badge v-if="supported" pill variant="success">Supported</b-badge>
-          <b-badge v-else pill variant="danger">Not supported</b-badge>
+        <div class="mb-4">
+          <b-button variant="primary" size="sm" @click="video" class="mr-2">Video</b-button>
+          <b-button variant="outline-primary" size="sm" @click="takePhoto" v-if="showImgButton">Capture Photo</b-button>
         </div>
-        <template v-if="supported">
-          <b-button variant="primary" size="sm" @click="start" class="mr-2">Start</b-button>
-          <b-button size="sm" @click="stop">Stop</b-button>
-          <div v-if="hasVideos">
-            <hr>
-            <ul class="list-unstyled video-list">
-              <li v-for="(item, idx) in videoList" :key="idx" class="video-item mb-3">
-                <div class="d-flex justify-content-between bg-light p-2">
-                  <video controls muted autoplay :src="item.src">
-                    <code>video</code> not supported
-                  </video>
-                  <div class="d-flex align-items-center">
-                    <b-button variant="danger" size="sm" @click="removeItem(idx)">Delete</b-button>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </template>
+
+        <b-row>
+          <b-col cols="12" sm="6">
+            <video autoplay ref="player" width="100%"></video>
+          </b-col>
+          <b-col cols="12" sm="6">
+            <div v-if="showImage">
+              <img :src="srcImage" alt="img" width="100%">
+              <div class="d-flex justify-content-end">
+                <b-button variant="danger" @click="deleteImg" class="my-2">Delete</b-button>
+              </div>
+            </div>
+          </b-col>
+        </b-row>
+
       </div>
     </template>
 
     <template v-slot:example-code>
       <CodeLang lang="javascript"/>
       <highlight-code lang="javascript">
-        // Audio & Video
-        navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+        navigator.mediaDevices.getUserMedia({ video: true })
           .then((stream) => {
-            // stream
+            // Show video in realtime
+            videoPlayer.srcObject = stream
 
-            mediaRecorder = new MediaRecorder(stream)
-
-            // Save chunks
-            mediaRecorder.ondataavailable = (e) => {
-              chunks.push(e.data)
-            }
-
-            mediaRecorder.onstop = (e) => {
-              // Process chunks
-              const blob = new Blob(chunks, { type: 'video/webm' })
-              const videoURL = window.URL.createObjectURL(blob)
-            }
-
+            // Reference stream for use it later
+            stream = stream
           })
-
       </highlight-code>
 
-      <highlight-code>
-        mediaRecorder.start()
-        mediaRecorder.stop()
+      <highlight-code lang="javascript">
+        // Our stream from above
+        const track = stream.getVideoTracks()[0]
+        const imageCapture = new ImageCapture(track)
+        imageCapture.takePhoto()
+          .then((blob) => {
+            // A Blob object represents a file-like object of immutable, raw data;
+            // Can be read as text or binary data, or converted into a ReadableStream so its methods can be used for processing the data.
+            // Blobs can represent data that isn't necessarily in a JavaScript-native format.
+            srcImage = window.URL.createObjectURL(blob)
+            window.URL.revokeObjectURL(blob)
+          })
       </highlight-code>
     </template>
   </ExampleBlock>
@@ -74,69 +66,39 @@ export default {
   },
   data () {
     return {
-      supported: false,
-      mediaRecorder: undefined,
-      chunks: [],
-      videoList: []
+      showImage: false,
+      srcImage: undefined,
+      srcVideo: undefined,
+      stream: undefined,
+      showImgButton: false
     }
   },
-  created () {
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      this.supported = true
-      navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+  methods: {
+    video () {
+      navigator.mediaDevices.getUserMedia({ video: true })
         .then((stream) => {
-          console.log(stream)
-
-          this.mediaRecorder = new MediaRecorder(stream)
-
-          this.mediaRecorder.ondataavailable = (e) => {
-            this.chunks.push(e.data)
-          }
-
-          this.mediaRecorder.onstop = (e) => {
-            console.log('recorder stopped')
-
-            const blob = new Blob(this.chunks, { type: 'video/webm' })
-            const videoURL = window.URL.createObjectURL(blob)
-            this.chunks = []
-
-            this.videoList.push({
-              src: videoURL
-            })
-          }
+          this.$refs.player.srcObject = stream
+          this.stream = stream
+          this.showImgButton = true
         })
         .catch((err) => {
           console.log('Err: ' + err)
         })
-    } else {
-      this.supported = false
-    }
-  },
-  computed: {
-    hasVideos () {
-      return this.videoList.length > 0
-    }
-  },
-  methods: {
-    start () {
-      this.mediaRecorder.start()
-      console.log(this.mediaRecorder.state)
-      console.log('recorder started')
     },
-    stop () {
-      this.mediaRecorder.stop()
-      console.log(this.mediaRecorder.state)
+    takePhoto () {
+      const track = this.stream.getVideoTracks()[0]
+      const imageCapture = new ImageCapture(track)
+      imageCapture.takePhoto()
+        .then(blob => {
+          this.srcImage = window.URL.createObjectURL(blob)
+          this.showImage = true
+          window.URL.revokeObjectURL(blob)
+        })
     },
-    removeItem (idx) {
-      this.videoList.splice(idx, 1)
+    deleteImg () {
+      this.showImage = false
+      this.srcImage = undefined
     }
   }
 }
 </script>
-
-<style lang="stylus">
-.video-list
-  .video-item
-    video
-      width 200px
-</style>
