@@ -9,7 +9,9 @@
 
         <b-row>
           <b-col cols="12" sm="6">
-            <video autoplay ref="player" width="100%"></video>
+            <div v-show="showVideo">
+              <video autoplay ref="player" width="100%"></video>
+            </div>
           </b-col>
           <b-col cols="12" sm="6">
             <div v-if="showImage">
@@ -68,9 +70,13 @@ export default {
     return {
       showImage: false,
       srcImage: undefined,
-      srcVideo: undefined,
       stream: undefined,
       showImgButton: false
+    }
+  },
+  computed: {
+    showVideo () {
+      return this.stream !== undefined
     }
   },
   methods: {
