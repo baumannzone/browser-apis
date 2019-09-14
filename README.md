@@ -5,7 +5,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/baumannzone/javascript-testing?style=flat-square)](https://github.com/baumannzone/browser-apis/commits/master)
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
-#### Google IO Extended Madrid 2019 · Demos 
+#### TechParty 2019 · Demos 
 
 ![Browser-apis](https://user-images.githubusercontent.com/5422102/57314151-5fe84e80-70f1-11e9-8539-07f836040f56.png)
 
