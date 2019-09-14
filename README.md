@@ -9,6 +9,8 @@
 
 ---
 
+SLIDES: https://slides.com/baumannzone/sabias-que-tu-navegador-puede-hablar-techparty2019
+
 ## Project setup
 ```
 yarn install
