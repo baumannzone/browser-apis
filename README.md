@@ -6,6 +6,7 @@
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 [![Code of conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/baumannzone/browser-apis/blob/master/CODE_OF_CONDUCT.md)
+[![GitHub](https://img.shields.io/github/license/baumannzone/browser-apis?color=blue&style=flat-square)](https://github.com/baumannzone/browser-apis/blob/master/LICENSE)
 
 #### TechParty 2019 · Demos 
 
