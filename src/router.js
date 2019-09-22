@@ -16,7 +16,7 @@ const routerOptions = [
   { path: '/media-recorder', name: 'MediaRecorder' },
   { path: '/image-capture', name: 'ImageCapture' },
   { path: '/face-detector', name: 'FaceDetector' },
-  { path: '/intersection-observer', name: 'IntersectionObserver' }
+  { path: '/intersection-observer🔴', name: 'IntersectionObserver' }
 ]
 
 const routes = routerOptions.map(route => {

@@ -3,10 +3,17 @@
   <template v-slot:code>
     <div class="data">
       <h4>Report when the target element is fully visible inside the box</h4>
-      <p class="report" ref="report"></p>
-      <div ref="root" class="root">
-        <div ref="target" class="target">
+      <div class="d-flex justify-content-end">
+        <p class="report lead my-4">{{ report }}</p>
+      </div>
+      <div ref="root" class="root border border-info">
+        <small class="my-5 text-center d-block">Scroll down..</small>
+        <small class="my-5 text-center d-block">Scroll down..</small>
+        <div class="d-flex justify-content-center">
+          <div ref="target" class="target"></div>
         </div>
+        <small class="my-5 text-center d-block">Scroll up..</small>
+        <small class="my-5 text-center d-block">Scroll up..</small>
       </div>
     </div>
   </template>
@@ -17,22 +24,18 @@
 
       const observedTarget = document.querySelector('.target')
       const observedRoot = document.querySelector('.root')
-      const observerReport = document.querySelector('.root')
 
       const callback = (entries) => {
         const [target] = entries
 
         if (target.isIntersecting) {
-          observerReport.innerText = 'HERE is the ball!'
+          // Is visible
         } else {
-          observerReport.innerText = 'Where is the ball?'
+          // Is not visible
         }
       }
 
-      const options = { root: observedRoot }
-
-      const observer = new IntersectionObserver(callback, options)
-
+      const observer = new IntersectionObserver(callback, { root: observedRoot })
       observer.observe(observedTarget)
 
     </highlight-code>
@@ -44,20 +47,20 @@
 import ExampleBlock from '@/components/ExampleBlock'
 import CodeLang from '@/components/TitleCodeLang'
 
+const options = [
+  'Where is the Ball? 🤔',
+  'HERE is the ball!'
+]
+
 export default {
   name: 'Example1',
   components: {
     CodeLang,
     ExampleBlock
   },
-  computed: {
-    chargingTime () {
-      let temp = this.battery.chargingTime / 60
-      if (temp === Infinity) {
-        return temp
-      } else {
-        return `${temp} min.`
-      }
+  data () {
+    return {
+      report: options[0]
     }
   },
   mounted () {
@@ -67,48 +70,35 @@ export default {
     demo1 () {
       const observedTarget = this.$refs.target
       const observedRoot = this.$refs.root
-      const observerReport = this.$refs.report
 
       const callback = (entries) => {
         const [target] = entries
 
         if (target.isIntersecting) {
-          observerReport.innerText = 'HERE is the ball!'
+          this.report = options[1]
         } else {
-          observerReport.innerText = 'Where is the ball?'
+          this.report = options[0]
         }
       }
 
-      const options = { root: observedRoot }
-
-      const observer = new IntersectionObserver(callback, options)
-
+      const observer = new IntersectionObserver(callback, { root: observedRoot })
       observer.observe(observedTarget)
     }
-  },
-  beforeRouteLeave (to, from, next) {
-    // Clear battery event listeners
-    next()
   }
 }
 </script>
 
-<style type="text/css" media="screen">
-.report {
-  text-align: right;
-}
-.root {
-  border: solid 2px lightblue;
-  height: 320px;
-  overflow-y: auto;
-}
+<style lang="stylus">
+.root
+  border-width 2px
+  height: 320px
+  overflow-y: auto
 
-.target {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background-color: indianred;
-  margin: 360px 0;
-  margin-left: calc(50% - 32px);
-}
+.target
+  width: 64px
+  height: 64px
+  border-radius: 50%
+  background-color: indianred
+  margin: 300px 0
+
 </style>

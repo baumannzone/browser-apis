@@ -27,7 +27,7 @@ export default {
         { to: '/media-recorder', name: 'Media Recorder' },
         { to: '/image-capture', name: 'Image Capture' },
         { to: '/face-detector', name: 'Face Detector' },
-        { to: '/intersection-observer', name: 'Intersection Observer' }
+        { to: '/intersection-observer🔴', name: 'Intersection Observer' }
       ]
     }
   },

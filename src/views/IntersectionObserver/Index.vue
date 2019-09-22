@@ -1,5 +1,5 @@
 <template>
-  <div class="intersection_observer-api">
+  <div class="intersection-observer-api">
 
     <MainBlock title="Intersection Observer API">
 
@@ -20,7 +20,7 @@ import Example1 from './Example1'
 import data from './data'
 
 export default {
-  name: 'BatteryAPI',
+  name: 'IntersectionObserverAPI',
   components: {
     MainBlock,
     DefinitionBlock,
@@ -33,7 +33,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
