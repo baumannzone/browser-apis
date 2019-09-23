@@ -4,7 +4,9 @@ The following is a set of guidelines for contributing to browser-apis.
 These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 #### Table of Contents  
-[Code of Conduct](#code-of-conduct)
+- [Code of Conduct](#code-of-conduct)
+- [What should I know before I get started?](#what-should-i-know-before-i-get-started)
+
 
 
 ## Code of Conduct
