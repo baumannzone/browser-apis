@@ -26,7 +26,8 @@ export default {
         { to: '/speech-recognition', name: 'Speech Recognition' },
         { to: '/media-recorder', name: 'Media Recorder' },
         { to: '/image-capture', name: 'Image Capture' },
-        { to: '/face-detector', name: 'Face Detector' }
+        { to: '/face-detector', name: 'Face Detector' },
+        { to: '/intersection-observer🔴', name: 'Intersection Observer' }
       ]
     }
   },

@@ -4,8 +4,9 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/baumannzone/browser-apis/pulls)
 [![GitHub last commit](https://img.shields.io/github/last-commit/baumannzone/javascript-testing?style=flat-square)](https://github.com/baumannzone/browser-apis/commits/master)
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 [![Code of conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/baumannzone/browser-apis/blob/master/CODE_OF_CONDUCT.md)
+[![GitHub](https://img.shields.io/github/license/baumannzone/browser-apis?color=blue&style=flat-square)](https://github.com/baumannzone/browser-apis/blob/master/LICENSE)
 
 #### TechParty 2019 · Demos 
 
@@ -52,6 +53,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://twitter.com/baumannzone"><img src="https://avatars0.githubusercontent.com/u/5422102?v=4" width="100px;" alt="Jorge Baumann"/><br /><sub><b>Jorge Baumann</b></sub></a><br /><a href="https://github.com/baumannzone/browser-apis/commits?author=baumannzone" title="Code">💻</a> <a href="#content-baumannzone" title="Content">🖋</a> <a href="#infra-baumannzone" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#design-baumannzone" title="Design">🎨</a></td>
+    <td align="center"><a href="https://valya.codes"><img src="https://avatars0.githubusercontent.com/u/7880641?v=4" width="100px;" alt="Valentin Berlin"/><br /><sub><b>Valentin Berlin</b></sub></a><br /><a href="https://github.com/baumannzone/browser-apis/commits?author=valenber" title="Code">💻</a> <a href="#example-valenber" title="Examples">💡</a></td>
   </tr>
 </table>
 
