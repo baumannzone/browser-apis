@@ -5,9 +5,9 @@
 
       <DefinitionBlock :description="description"/>
 
-      <BrowserSupportTable apiName="intersectionobserver" />
-
       <Example1/>
+
+      <BrowserSupportTable apiName="intersectionobserver" />
 
     </MainBlock>
 

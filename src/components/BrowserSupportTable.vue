@@ -1,21 +1,43 @@
 <template>
   <div class="component browser-support-table">
   <h3>Browser support</h3>
-  <table class="table">
+
+  <h5>Desktop</h5>
+  <table class="table desktop-browsers">
    <thead>
     <tr>
-      <th v-for="(item, idx) in browserSupportData" v-bind:key="idx">{{item.name}}</th>
+      <th v-for="(item, idx) in desktopBrowsersData" v-bind:key="idx" class="text-center">{{item.name}}</th>
     </tr>
    </thead>
    <tbody>
      <tr>
-       <td v-for="(item, idx) in browserSupportData" v-bind:key="idx">{{item.versions.no}}</td>
+       <td v-for="(item, idx) in desktopBrowsersData" v-bind:key="idx" class="bg-danger text-center">{{item.versions.no}}</td>
      </tr>
      <tr>
-       <td v-for="(item, idx) in browserSupportData" v-bind:key="idx">{{item.versions.partial}}</td>
+       <td v-for="(item, idx) in desktopBrowsersData" v-bind:key="idx" class="bg-warning text-center">{{item.versions.partial}}</td>
      </tr>
      <tr>
-       <td v-for="(item, idx) in browserSupportData" v-bind:key="idx">{{item.versions.full}}</td>
+       <td v-for="(item, idx) in desktopBrowsersData" v-bind:key="idx" class="bg-success text-center">{{item.versions.full}}</td>
+     </tr>
+   </tbody>
+  </table>
+
+  <h5>Mobile</h5>
+  <table class="table mobile-browsers">
+   <thead>
+    <tr>
+      <th v-for="(item, idx) in mobileBrowsersData" v-bind:key="idx" class="text-center">{{item.name}}</th>
+    </tr>
+   </thead>
+   <tbody>
+     <tr>
+       <td v-for="(item, idx) in mobileBrowsersData" v-bind:key="idx" class="bg-danger text-center">{{item.versions.no}}</td>
+     </tr>
+     <tr>
+       <td v-for="(item, idx) in mobileBrowsersData" v-bind:key="idx" class="bg-warning text-center">{{item.versions.partial}}</td>
+     </tr>
+     <tr>
+       <td v-for="(item, idx) in mobileBrowsersData" v-bind:key="idx" class="bg-success text-center">{{item.versions.full}}</td>
      </tr>
    </tbody>
   </table>
@@ -37,24 +59,24 @@ export default {
     return {
       browserSupportDataRaw: null,
       browsersMap: {
-        chrome: { name: 'Chrome' },
-        edge: { name: 'Edge' },
-        firefox: { name: 'Firefox' },
-        safari: { name: 'Safari' },
-        opera: { name: 'Opera' },
-        and_chr: { name: 'Chrome for Android' },
-        and_ff: { name: 'Firefox for Android' },
-        ios_saf: { name: 'Safari for iOS' },
-        ie: { name: 'Internet Explorer' },
-        op_mob: { name: 'Mobile Opera' },
-        op_mini: { name: 'Opera Mini' },
-        baidu: { name: 'Baidu Browser' },
-        kaios: { name: 'KaiOS Browser' },
-        and_qq: { name: 'QQ Browser' },
-        samsung: { name: 'Samsung Browser' },
-        and_uc: { name: 'UC Browser' },
-        android: { name: 'Android Browser' },
-        ie_mob: { name: 'Mobile Edge' }
+        chrome: { name: 'Chrome', type: 1 },
+        edge: { name: 'Edge', type: 1 },
+        firefox: { name: 'Firefox', type: 1 },
+        safari: { name: 'Safari', type: 1 },
+        opera: { name: 'Opera', type: 1 },
+        and_chr: { name: 'Chrome for Android', type: 2 },
+        and_ff: { name: 'Firefox for Android', type: 2 },
+        ios_saf: { name: 'Safari for iOS', type: 2 },
+        ie: { name: 'Internet Explorer', type: 1 },
+        op_mob: { name: 'Mobile Opera', type: 2 },
+        op_mini: { name: 'Opera Mini', type: 2 },
+        baidu: { name: 'Baidu Browser', type: 2 },
+        kaios: { name: 'KaiOS Browser', type: 2 },
+        and_qq: { name: 'QQ Browser', type: 2 },
+        samsung: { name: 'Samsung Browser', type: 2 },
+        and_uc: { name: 'UC Browser', type: 2 },
+        android: { name: 'Android Browser', type: 2 },
+        ie_mob: { name: 'Mobile Edge', type: 2 }
       }
     }
   },
@@ -66,7 +88,8 @@ export default {
           .map((key) => {
             return {
               id: key,
-              name: this.getBrowserName(key),
+              name: this.browsersMap[key].name,
+              type: this.browsersMap[key].type,
               versions: {
                 no: this.browserSupportDataRaw[key].n || null,
                 partial: this.browserSupportDataRaw[key].a || null,
@@ -74,6 +97,14 @@ export default {
               }
             }
           })
+    },
+    desktopBrowsersData () {
+      return this.browserSupportData
+        .filter(browser => browser.type === 1)
+    },
+    mobileBrowsersData () {
+      return this.browserSupportData
+        .filter(browser => browser.type === 2)
     }
   },
   methods: {
@@ -84,10 +115,6 @@ export default {
       } catch (err) {
         console.error(`Failed to fetch browser support data for '${featureName}'.`, err)
       }
-    },
-    getBrowserName (code) {
-      const { name } = this.browsersMap[code]
-      return typeof name !== 'undefined' ? name : code
     }
   },
   mounted () {
