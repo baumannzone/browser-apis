@@ -1,54 +1,30 @@
 <template>
   <div class="component browser-support-table">
   <h3>Browser support</h3>
+  <p>For detailed support information, please refer to <a :href="`https://caniuse.com/#feat=${apiName}`" target="_blank" class="badge badge-info">caniuse.com</a>
 
   <h5>Desktop</h5>
-  <table class="table desktop-browsers">
-   <thead>
-    <tr>
-      <th v-for="(item, idx) in desktopBrowsersData" v-bind:key="idx" class="text-center">{{item.name}}</th>
-    </tr>
-   </thead>
-   <tbody>
-     <tr>
-       <td v-for="(item, idx) in desktopBrowsersData" v-bind:key="idx" class="bg-danger text-center">{{item.versions.no}}</td>
-     </tr>
-     <tr>
-       <td v-for="(item, idx) in desktopBrowsersData" v-bind:key="idx" class="bg-warning text-center">{{item.versions.partial}}</td>
-     </tr>
-     <tr>
-       <td v-for="(item, idx) in desktopBrowsersData" v-bind:key="idx" class="bg-success text-center">{{item.versions.full}}</td>
-     </tr>
-   </tbody>
-  </table>
+  <div class="browser-list desktop-browsers">
+    <BrowserCard v-for="(browser, idx) in desktopBrowsersData" :name="browser.name" :versions="browser.versions" :key="idx" />
+  </div>
 
   <h5>Mobile</h5>
-  <table class="table mobile-browsers">
-   <thead>
-    <tr>
-      <th v-for="(item, idx) in mobileBrowsersData" v-bind:key="idx" class="text-center">{{item.name}}</th>
-    </tr>
-   </thead>
-   <tbody>
-     <tr>
-       <td v-for="(item, idx) in mobileBrowsersData" v-bind:key="idx" class="bg-danger text-center">{{item.versions.no}}</td>
-     </tr>
-     <tr>
-       <td v-for="(item, idx) in mobileBrowsersData" v-bind:key="idx" class="bg-warning text-center">{{item.versions.partial}}</td>
-     </tr>
-     <tr>
-       <td v-for="(item, idx) in mobileBrowsersData" v-bind:key="idx" class="bg-success text-center">{{item.versions.full}}</td>
-     </tr>
-   </tbody>
-  </table>
+  <div class="browser-list mobile-browsers">
+    <BrowserCard v-for="(browser, idx) in mobileBrowsersData" :name="browser.name" :versions="browser.versions" :key="idx" />
+  </div>
+
   </div>
 </template>
 
 <script>
+import BrowserCard from './BrowserCard.vue'
 const caniuse = require('caniuse-api')
 
 export default {
   name: 'BrowserSupportTable',
+  components: {
+    BrowserCard
+  },
   props: {
     apiName: {
       type: String,
@@ -122,3 +98,14 @@ export default {
   }
 }
 </script>
+
+<style lang='css'>
+
+.browser-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2em;
+  margin-bottom: 4em;
+}
+
+</style>
