@@ -1,9 +1,11 @@
 # ¿Sabías que tu navegador puede hablar?
 ## Y otras Web APIs 🤓
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/75247670-d15d-4839-9909-f9fcc8360beb/deploy-status)](https://app.netlify.com/sites/browser-apis/deploys)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/baumannzone/browser-apis/pulls)
 [![GitHub last commit](https://img.shields.io/github/last-commit/baumannzone/javascript-testing?style=flat-square)](https://github.com/baumannzone/browser-apis/commits/master)
 [![Style](https://img.shields.io/badge/code%20style-standard-brightgreen?style=flat-square)](https://img.shields.io/badge/code%20style-standard-brightgreen?style=flat-square)
+[![first-timers-only](https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)](https://www.firsttimersonly.com/)
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 [![Code of conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/baumannzone/browser-apis/blob/master/CODE_OF_CONDUCT.md)
