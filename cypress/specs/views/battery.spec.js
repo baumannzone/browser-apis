@@ -1,11 +1,11 @@
-import { battery, visitAndMock } from "../../support";
+import { battery, visitAndMockWithPromise } from "../../support";
 
 describe("Battery view", () => {
    let callbacks;
 
     beforeEach(() => {
         callbacks = {};
-        visitAndMock("getBattery", ({
+        visitAndMockWithPromise("getBattery", ({
             level: 0.12,
             charging: false,
             chargingTime: 60,
