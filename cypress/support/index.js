@@ -1,7 +1,11 @@
 import "./cypress-extensions";
 
 export function battery() {
-    return cy.get("a[href$='battery']").click();
+    return navigate("battery");
+}
+
+function navigate(id) {
+    return cy.get(`a[href$='${id}']`).click();
 }
 
 export function visitAndMock(methodName, result) {
