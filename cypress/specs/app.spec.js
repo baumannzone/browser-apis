@@ -4,6 +4,6 @@ describe('Browswer-Api app', function() {
   });
 
   it('should be loaded', function() {
-    cy.get("#nav").should("not.be.visible");
+    cy.get("#nav").should("be.visible");
   })
 })
