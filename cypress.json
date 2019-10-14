@@ -1,0 +1,11 @@
+{
+    "integrationFolder": "cypress/specs",
+    "screenshotsFolder": "cypress/screenshots",
+    "videosFolder": "cypress/videos",
+    "supportFile": "cypress/support/index.js",
+    "video": true,
+    "viewportWidth": 1280,
+    "viewportHeight": 660,
+    "defaultCommandTimeout": 5000,
+    "reporter": "junit"
+}
