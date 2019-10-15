@@ -7,6 +7,8 @@
 
       <Example1/>
 
+      <BrowserSupportTable apiName="intersectionobserver" />
+
     </MainBlock>
 
   </div>
@@ -15,6 +17,8 @@
 <script>
 import MainBlock from '@/components/MainBlock.vue'
 import DefinitionBlock from '@/components/DefinitionBlock'
+import BrowserSupportTable from '@/components/BrowserSupportTable'
+
 import Example1 from './Example1'
 
 import data from './data'
@@ -24,6 +28,7 @@ export default {
   components: {
     MainBlock,
     DefinitionBlock,
+    BrowserSupportTable,
     Example1
   },
   data () {

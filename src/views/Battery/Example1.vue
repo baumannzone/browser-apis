@@ -103,7 +103,7 @@ export default {
 
           battery.addEventListener('levelchange', (ev) => {
             const battery = ev.currentTarget
-            this.battery.level = battery.level
+            this.battery.level = battery.level * 100
             console.log(`Battery Level ${battery.level} %`)
           })
         })
