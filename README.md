@@ -34,10 +34,18 @@ yarn run serve
 yarn run build
 ```
 
-### Run your tests
+### Run your unit tests
 ```
 yarn run test
 ```
+
+### Run all UI tests
+Execute ```yarn run serve``` and then use another cmd to start the tests by using ```yarn run cy-all```
+
+
+### Run single UI test suite
+Execute ```yarn run serve``` and then use another cmd to start the interactive mode by using ```yarn run cy-open```
+
 
 ### Lints and fixes files
 ```
