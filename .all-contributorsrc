@@ -26,6 +26,16 @@
         "code",
         "example"
       ]
+    },
+    {
+      "login": "gabbersepp",
+      "name": "Josef Biehler",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3234900?v=4",
+      "profile": "https://jodekadev.de",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
