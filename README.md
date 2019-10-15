@@ -65,6 +65,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://twitter.com/baumannzone"><img src="https://avatars0.githubusercontent.com/u/5422102?v=4" width="100px;" alt="Jorge Baumann"/><br /><sub><b>Jorge Baumann</b></sub></a><br /><a href="https://github.com/baumannzone/browser-apis/commits?author=baumannzone" title="Code">💻</a> <a href="#content-baumannzone" title="Content">🖋</a> <a href="#infra-baumannzone" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#design-baumannzone" title="Design">🎨</a></td>
     <td align="center"><a href="https://valya.codes"><img src="https://avatars0.githubusercontent.com/u/7880641?v=4" width="100px;" alt="Valentin Berlin"/><br /><sub><b>Valentin Berlin</b></sub></a><br /><a href="https://github.com/baumannzone/browser-apis/commits?author=valenber" title="Code">💻</a> <a href="#example-valenber" title="Examples">💡</a></td>
+    <td align="center"><a href="https://jodekadev.de"><img src="https://avatars3.githubusercontent.com/u/3234900?v=4" width="100px;" alt="Josef Biehler"/><br /><sub><b>Josef Biehler</b></sub></a><br /><a href="https://github.com/baumannzone/browser-apis/commits?author=gabbersepp" title="Code">💻</a> <a href="https://github.com/baumannzone/browser-apis/commits?author=gabbersepp" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
