@@ -8,26 +8,7 @@
     "lint": "vue-cli-service lint",
     "cy-open": "cypress open",
     "cy-all": "cypress run",
-    "test": "jest"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "vue"
-    ],
-    "transform": {
-      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
-    },
-    "testMatch": [
-      "<rootDir>/jest/specs/**/*.(spec|test).(js|jsx|ts|tsx)"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
-    },
-    "transformIgnorePatterns": [
-      "<rootDir>/node_modules/"
-    ]
+    "jest": "jest"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
@@ -41,11 +22,13 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.6.3",
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-service": "^3.7.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.9.0",
     "cypress": "~3.4.1",

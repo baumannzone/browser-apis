@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import BrowserCard from '../../src/components/BrowserCard'
+import BrowserCard from '../../src/components/BrowserCard.vue'
 
 /**
  * @param {object} [props]
