@@ -36,6 +36,16 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "adrichey",
+      "name": "Alan Richey",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1534554?v=4",
+      "profile": "https://github.com/adrichey",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
