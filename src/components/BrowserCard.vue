@@ -1,7 +1,7 @@
 <template>
   <div class="browser-card" :class="versionTag.class" data-toggle="tooltip" :title="versionTag.tooltip">
-    <span>{{ name }}</span>
-    <span>{{ versionTag.version }}</span>
+    <span ref="name">{{ name }}</span>
+    <span ref="version">{{ versionTag.version }}</span>
   </div>
 </template>
 <script>
