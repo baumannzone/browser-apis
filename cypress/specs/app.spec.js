@@ -1,9 +1,9 @@
-describe('Browswer-Api app', function() {
+describe('Browswer-Api app', function () {
   beforeEach(() => {
-    cy.open();
-  });
+    cy.open()
+  })
 
-  it('should be loaded', function() {
-    cy.get("#nav").should("be.visible");
+  it('should be loaded', function () {
+    cy.get('#nav').should('be.visible')
   })
 })

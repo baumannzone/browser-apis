@@ -77,7 +77,7 @@ export default {
       voiceNames: [],
       selectedVoiceName: 'Jorge',
       form3: {
-        input: '',
+        input: 'Y además... ¿Sabías que tiene un canal de youtube? 🙀🤡🥳',
         pitch: 1,
         rate: 1
       }
@@ -94,6 +94,7 @@ export default {
   methods: {
     populateVoiceList () {
       this.voices = window.speechSynthesis.getVoices()
+      console.table(this.voices)
       this.voiceNames = this.voices.map((v) => {
         return { value: v.name, text: `${v.name} (${v.lang})`, name: v.name, lang: v.lang }
       })

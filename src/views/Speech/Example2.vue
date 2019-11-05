@@ -50,7 +50,7 @@ export default {
   data () {
     return {
       form2: {
-        input: '',
+        input: 'Creo que ya lo sabes, pero mi perro se llama Rambo. También conocido como RambitoJS.',
         pitch: 1,
         rate: 1
       }
