@@ -19,6 +19,10 @@ export default {
     {
       displayText: 'Como poco coco, como como poco coco, poco coco compro',
       text: 'Como poco coco como como poco coco poco coco compro'
+    },
+    {
+      displayText: 'Pepe Pecas pica papas con un pico. Con un pico pica papas Pepe Pecas.',
+      text: 'Pepe Pecas pica papas con un pico. Con un pico pica papas Pepe Pecas'
     }
   ]
 }

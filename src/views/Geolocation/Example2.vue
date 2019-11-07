@@ -42,10 +42,11 @@
           fetch(url)
             .then(response => response.json())
             .then((res) => {
-            // Handle response
+              // Handle response
             })
-        }, (error) => {
-          // Handle error
+            }, (error) => {
+              // Handle error
+            })
         })
       </highlight-code>
     </template>
