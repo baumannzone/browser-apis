@@ -46,6 +46,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "zarither",
+      "name": "zarither",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/26934368?v=4",
+      "profile": "https://github.com/Zarither",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
