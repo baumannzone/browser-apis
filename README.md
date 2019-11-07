@@ -7,7 +7,7 @@
 [![Style](https://img.shields.io/badge/code%20style-standard-brightgreen?style=flat-square)](https://img.shields.io/badge/code%20style-standard-brightgreen?style=flat-square)
 [![first-timers-only](https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)](https://www.firsttimersonly.com/)
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 [![Code of conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/baumannzone/browser-apis/blob/master/CODE_OF_CONDUCT.md)
 [![GitHub](https://img.shields.io/github/license/baumannzone/browser-apis?color=blue&style=flat-square)](https://github.com/baumannzone/browser-apis/blob/master/LICENSE)
 
@@ -67,6 +67,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://valya.codes"><img src="https://avatars0.githubusercontent.com/u/7880641?v=4" width="100px;" alt="Valentin Berlin"/><br /><sub><b>Valentin Berlin</b></sub></a><br /><a href="https://github.com/baumannzone/browser-apis/commits?author=valenber" title="Code">💻</a> <a href="#example-valenber" title="Examples">💡</a></td>
     <td align="center"><a href="https://jodekadev.de"><img src="https://avatars3.githubusercontent.com/u/3234900?v=4" width="100px;" alt="Josef Biehler"/><br /><sub><b>Josef Biehler</b></sub></a><br /><a href="https://github.com/baumannzone/browser-apis/commits?author=gabbersepp" title="Code">💻</a> <a href="https://github.com/baumannzone/browser-apis/commits?author=gabbersepp" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/adrichey"><img src="https://avatars0.githubusercontent.com/u/1534554?v=4" width="100px;" alt="Alan Richey"/><br /><sub><b>Alan Richey</b></sub></a><br /><a href="https://github.com/baumannzone/browser-apis/commits?author=adrichey" title="Code">💻</a> <a href="https://github.com/baumannzone/browser-apis/commits?author=adrichey" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/Zarither"><img src="https://avatars0.githubusercontent.com/u/26934368?v=4" width="100px;" alt="zarither"/><br /><sub><b>zarither</b></sub></a><br /><a href="https://github.com/baumannzone/browser-apis/commits?author=zarither" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
