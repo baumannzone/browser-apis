@@ -4,25 +4,29 @@
       <div class="data mb-4">
         <b-button variant="primary" size="sm" @click="demo">Start</b-button>
       </div>
+
       <template v-if="isRecording">
         <Recording/>
       </template>
 
       <b-form class="mt-4">
+
         <b-form-group label="Lang">
           <b-form-radio v-model="selectedLang" name="some-radios" value="es-ES">Spanish</b-form-radio>
           <b-form-radio v-model="selectedLang" name="some-radios" value="en-US">English</b-form-radio>
         </b-form-group>
+
         <b-input-group>
-          <b-form-input type="text" v-model="transcript" placeholder="Say something funny"></b-form-input>
+          <b-form-input type="text" v-model="transcript" readonly></b-form-input>
           <b-input-group-append>
             <b-button variant="dark" @click="clearInput">Clear</b-button>
           </b-input-group-append>
         </b-input-group>
+
         <b-form-text>Confidence: {{ confidence }}</b-form-text>
       </b-form>
 
-      <p class="lead text-center my-3 p-3" :class="resultClass">{{ selectedPhrase }}</p>
+      <p class="lead text-center my-3 p-3" :class="resultClass"> {{ selectedPhrase.displayText }} </p>
 
     </template>
 
@@ -50,6 +54,7 @@
 
       </highlight-code>
     </template>
+
   </ExampleBlock>
 </template>
 
@@ -73,7 +78,7 @@ export default {
       confidence: '',
       isRecording: false,
       phrases: data.phrases,
-      selectedPhrase: '',
+      selectedPhrase: {},
       selectedLang: 'es-ES',
       resultClass: ''
     }
@@ -81,26 +86,27 @@ export default {
   methods: {
     demo () {
       this.clearInput()
+      this.selectedPhrase = this.randomPhrase()
       this.resultClass = ''
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
       const recognition = new SpeechRecognition()
-      this.selectedPhrase = this.randomPhrase()
       const phrase = this.selectedPhrase
-
       recognition.lang = this.selectedLang
 
       recognition.onresult = (event) => {
         this.transcript = event.results[0][0].transcript
         this.confidence = event.results[0][0].confidence
 
-        console.log(phrase.toLocaleLowerCase() === this.transcript.toLocaleLowerCase())
+        // console.log(phrase.toLocaleLowerCase() === this.transcript.toLocaleLowerCase())
 
-        if (phrase.toLocaleLowerCase() === this.transcript.toLocaleLowerCase()) {
+        if (phrase.text.toLocaleLowerCase() === this.transcript.toLocaleLowerCase()) {
+          console.log(1, phrase)
           this.resultClass = 'bg-success text-white'
-          this.selectedPhrase = `🥳🥳🥳 ${phrase} 🥳🥳🥳`
+          this.selectedPhrase = `🥳🥳🥳 ${phrase.displayText} 🥳🥳🥳`
         } else {
+          console.log(2, phrase)
           this.resultClass = 'bg-danger text-white'
-          this.selectedPhrase = `😒 ${phrase} 😳😭😭😭`
+          this.selectedPhrase.displayText = `😒 ${phrase.displayText} 😳😭😭😭`
         }
       }
 

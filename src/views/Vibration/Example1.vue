@@ -20,6 +20,7 @@
           navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate
           navigator.vibrate(400)
         }
+        // Nope. You Can’t Detect A Vibrator™
       </highlight-code>
     </template>
   </ExampleBlock>
